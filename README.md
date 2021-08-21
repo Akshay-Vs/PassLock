@@ -68,6 +68,7 @@ _____________
 &#9724;Run PassLock to open Password manager<br>
 &#9724;Enter path of a directory to save encrypted password (Recomended: Create a seperate directory to save password)<i> eg: D:\AES-Ecrypted-Password-Manager\data</i><br>
 &#9724;Create a master password
+ <h4 align='left'>Recomented IDE: Visual Studio Code 1.5+</h4>
 
 
 <h2 align='left'><u><b>Commands</b></u></h2>
@@ -81,7 +82,7 @@ _____________
  <h2 aling='left'><u><b>Error Messages</b></u></h2>
  &#9724; <code>>>>path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory</code><br>
   This means that you are not running the PassLock application properly.
- <b>You cannot use the 'AES-Encrypted-Password-Manager' directory inside another folder</b><br><br>
+ <b>You cannot use the 'AES-Encrypted-Password-Manager' directory inside another folder or PassLock.py alone.Open the directory insted</b><br><br>
  &#9724; <code>>>>Something went wrong, restart requered</code></br>
  This means that something is not working as expected and can be fixed by restarting the code.
 <br>

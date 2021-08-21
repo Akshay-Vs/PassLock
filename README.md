@@ -64,8 +64,9 @@ Passlock also has a console user interface that will definitely help to enhance 
 _____________
 
 <h2 align='left'><u><b>Running</b></u></h2>
+&#9724;Extract the Zip file
 &#9724;Run PassLock to open Password manager<br>
-&#9724;Enter path of a directory to save encrypted password (Recomended: Create a seperate directory to save password)<br>
+&#9724;Enter path of a directory to save encrypted password (Recomended: Create a seperate directory to save password)<i> eg: D:\AES-Ecrypted-Password-Manager\data</i><br>
 &#9724;Create a master password
 
 

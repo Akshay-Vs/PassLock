@@ -15,7 +15,7 @@ def help():
                     |  |-ekey''','green',attrs=['bold'])
     cprint("\n\tcommands",'cyan',attrs=['bold'])
     cprint("'new' to create new password\n'show' to show saved passwords\n'--del' to edit passwords and identification name\n'-c' to copy password to clipboard\n\nleaving passwords blank will geanerete a random password",'cyan',attrs=['bold'])
-    typing('\nNOTE:changing/deletion path.b or ekey.b will completly distroy your passwords',typing_speed=75)
+    typing('\nNOTE:changing/deletion path_dir or ekey after first use will completly distroy your passwords',typing_speed=75)
     cprint("\tPython password manager\n\nversion 1.0\nEncryption:Advanced Encryption Standard (AES)\nAuthor: Akshay Vs\n\tgithub.com/Akshay-Vs/\n\tinstagram.com/__akshay_v5__/",'cyan')
 
     input()

@@ -186,7 +186,7 @@ class screen:
 					decrypted_final_password=decrypter.decrypt_password(id)
 					typing("Decrypting...  ","cyan")
 					clear()
-					cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue',"cyan",attrs=['bold'])
+					cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					c=input()
 					if c=="-c":pyperclip.copy(decrypted_final_password)
 				except FileNotFoundError:

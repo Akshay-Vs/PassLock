@@ -1,7 +1,5 @@
 #pip compile requerments.txt
-
-pip-tools==5.3.1
-pygithub==1.53  
+ 
 Crypto==1.4
 termcolor==1.1
 pyperclip==1.8

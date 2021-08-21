@@ -16,8 +16,9 @@ try:
     path_dir=open("path_dir")
     path_dir.close()
 except:
-	root=open("path_dir",'w+')
-	cprint("Default path is not readable, Please create a new path",'yellow')
-	path_dir=root.write(input("Enter path to the directory to save passwords: "))
+    root=open("path_dir",'w+')
+    print("Where do I store passwords?")
+    cprint("Be sure to enter an existing path, 1.0 doesn't deals with that issue, FIX: Edit path_dir with a valid path",'yellow')#This will get omitted after a couple of updates.
+    path_dir=root.write(input("Enter path to the directory: "))
 try:key_process().encrypt_key()
-except Exception as e:cprint(f"{e} restart requered\n",'red')
+except Exception:cprint(f"Something went wrong restart requered\n",'red')

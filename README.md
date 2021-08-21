@@ -82,7 +82,7 @@ _____________
  &#9724; <code>>>>path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory</code><br>
   This means that you are not running the PassLock application properly.
  <b>You cannot use the 'AES-Encrypted-Password-Manager' directory inside another folder</b><br><br>
- &#9724; <code>>>>Something went wrong restart requered</code></br>
+ &#9724; <code>>>>Something went wrong, restart requered</code></br>
  This means that something is not working as expected and can be fixed by restarting the code.
 <br>
 <h2 align='left'><u><b>License and Copyright</b></u></h2>

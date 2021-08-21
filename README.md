@@ -52,7 +52,7 @@ Passlock also has a console user interface that will definitely help to enhance 
 | 1.0  | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
 
 
-&bull; Devoloper: Akshay Vs<br>
+&bull; Author: Akshay Vs<br>
 <h4 align="left"><b>Connect with me</b></h4>
 <p align="left">
 <a href="https://twitter.com/@Akshayv69128812" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@Akshayv69128812" height="30" width="40" /></a>

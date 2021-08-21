@@ -79,7 +79,7 @@ _____________
 <code>--Exit</code>close all files and exit console application<br>
  
  <h2 aling='left'><u><b>Error Messages</b></u></h2>
- &#9724; <code>>>>Invalid file path, Try to open AES-Encrypted-Password-manager folder as home directory</code><br>
+ &#9724; <code>>>>path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory</code><br>
   This means that you are not running the PassLock application properly.
  <b>You cannot use the 'AES-Encrypted-Password-Manager' directory inside another folder</b><br><br>
  &#9724; <code>>>>Something went wrong restart requered</code></br>

@@ -21,5 +21,7 @@ except:
     cprint("Be sure to enter an existing path, 1.0 doesn't deals with that issue, FIX: Edit path_dir with a valid path",'yellow')#This will get omitted after a couple of updates.
     path_dir=root.write(input("Enter path to the directory: "))
 try:key_process().encrypt_key()
-except FileNotFoundError as e:print("Invalid file path, Try to open AES-Encrypted-Password-manager folder as home directory\n")
-except Exception:cprint(f"Something went wrong restart requered\n",'red')
+except FileNotFoundError as e:print("path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory\n")
+except Exception:cprint(f"Something went wrong, restart requered\n",'red')
+
+    

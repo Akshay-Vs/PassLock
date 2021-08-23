@@ -104,19 +104,19 @@ class key_process:
 		#encrypted_key=aes.encrypt(raw_key)
 		encrypted_root=self.rootb.read()
 		t=str(encrypted_root)
-		splited_encrypted_root=(t.split("'")[-2])#splitting encrypted key
-		#self.rootw.write(splited_encrypted_key)#saving
+		splitted_encrypted_root=(t.split("'")[-2])#splitting encrypted key
+		#self.rootw.write(splitted_encrypted_key)#saving
 
 		#print(encrypted_key)#-->temp
-		decryptepted_final_key=aes.decrypt(splited_encrypted_root)#splited_encrypted_root
+		decryptepted_final_key=aes.decrypt(splitted_encrypted_root)#splitted_encrypted_root
 		#print(decrypt)
 		
 		
 		if decryptepted_final_key==self.raw_key:
 			reencrypted_key=aes.encrypt(decryptepted_final_key)#reencryption decrypted key for better security
 			t=str(reencrypted_key)
-			splited_reencrypted_key=(t.split("'")[-2])#splitting encrypted key
-			open("lib/ekey","w").write(splited_reencrypted_key)#saving the new key
+			splitted_reencrypted_key=(t.split("'")[-2])#splitting encrypted key
+			open("lib/ekey","w").write(splitted_reencrypted_key)#saving the new key
 			clear()
 			typing("Access granded...","cyan")
 			screen().home_elements()
@@ -133,8 +133,8 @@ class key_process:
 		aes=AESCipher(self.raw_key)
 		raw_encrypted_password=aes.encrypt(raw_password)
 		t=str(raw_encrypted_password)
-		splited_encrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
-		return splited_encrypted_password
+		splitted_encrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
+		return splitted_encrypted_password
 		
 
 	def decrypt_password(self,id):
@@ -142,7 +142,17 @@ class key_process:
 		path=open(f"{self.path_dir}\\{id}\\password")
 		encrypted_password=path.read()#opening encrypted password from root
 		decrypted_password=aes.decrypt(encrypted_password)
-		return decrypted_password		
+		return decrypted_password
+
+	def reencrypt_password(self,id,password):
+		aes=AESCipher(self.raw_key)
+		reencrypted_password=aes.encrypt(password)
+		root=open(f"{self.path_dir}\\{id}\\password",'w')
+		t=str(reencrypted_password)
+		splitted_reencrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
+		root.write(splitted_reencrypted_password)
+
+		
 
 class screen:
 
@@ -188,6 +198,7 @@ class screen:
 					clear()
 					cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					c=input()
+					decrypter.reencrypt_password(id,decrypted_final_password)#1.1 implementation
 					if c=="-c":pyperclip.copy(decrypted_final_password)
 				except FileNotFoundError:
 					clear()

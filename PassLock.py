@@ -22,6 +22,7 @@ except:
     path_dir=root.write(input("Enter path to the directory: "))
 try:key_process().encrypt_key()
 except FileNotFoundError as e:print("path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory\n")
-except Exception:cprint(f"Something went wrong, restart requered\n",'red')
-
+except Exception:
+    cprint(f"Something went wrong, restart required",'red')
+    cprint("kill current terminal and run this again\n",'yellow')
     

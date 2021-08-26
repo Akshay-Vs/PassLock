@@ -1,7 +1,7 @@
 from os import remove
 from addons import *
 
-class password_manager:
+class PasswordManager:
 
 	def __init__(self,id_name,password):
 		self.id_name=id_name
@@ -29,7 +29,7 @@ class password_manager:
 		
 		try:
 			root=open(f"{path}\\password","w+")
-			root.write(key_process().encrypt_password(self.password))
+			root.write(KeyProcess().encrypt_password(self.password))
 		except Exception as e:
 			print("Unable to save password\n",e)
 			input()
@@ -59,13 +59,14 @@ class AESCipher(object):
     def _unpad(s):
         return s[:-ord(s[len(s)-1:])]
 
-class key_process:
-
-	def __init__(self):
+class KeyProcess:
+	global rawkey
+	def __init__(self,raw_key="none"):
 		clear()
 		#initializing all process for the first use
 		#opening requered files
-		self.raw_key="key"
+		self.raw_key=raw_key
+		print(raw_key,self.raw_key)
 		try:
 			self.path_dir=open("path_dir","r+").read()
 			self.rootb=open("lib\ekey","rb")
@@ -119,7 +120,7 @@ class key_process:
 			open("lib/ekey","w").write(splitted_reencrypted_key)#saving the new key
 			clear()
 			typing("Access granded...","cyan")
-			screen().home_elements()
+			Screen().home_elements()
 
 		else:
 			cprint("Access denied\nExiting Application...","red",attrs=["bold"])
@@ -140,6 +141,8 @@ class key_process:
 	def decrypt_password(self,id):
 		aes=AESCipher(self.raw_key)
 		path=open(f"{self.path_dir}\\{id}\\password")
+		#print("path= ",path)
+		#nput()
 		encrypted_password=path.read()#opening encrypted password from root
 		decrypted_password=aes.decrypt(encrypted_password)
 		return decrypted_password
@@ -154,7 +157,7 @@ class key_process:
 
 		
 
-class screen:
+class Screen:
 
 	def __init__(self) -> None:
 		pass
@@ -180,25 +183,30 @@ class screen:
 
 			elif user_input=="new":
 				id=input("Create an identification name: ")
-				mgr_input_password=input("Enter password: ")
+				mgr_input_password=input(f"Enter {id} password: ")
 				if mgr_input_password=="" or '-r' in mgr_input_password:
-					mgr_input_password=generate_random_password()
+					splited_input=mgr_input_password.split()
+					print(splited_input[1],type(splited_input))
+					value = int(splited_input[1])
+					print(value,type(value))
+					mgr_input_password=generate_random_password(value)
+					#except:mgr_input_password=generate_random_password(40)
 					cprint(f"Generated password: {mgr_input_password}")
 					sleep(1)
-				manager=password_manager(id,mgr_input_password)
+				manager=PasswordManager(id,mgr_input_password)
 				manager.take_password()
 				sleep(1.792)
 
 			elif user_input=="show":
 				id=input("Enter identification name: ")
-				decrypter=key_process()
+				decrypter=KeyProcess()
 				try:
 					decrypted_final_password=decrypter.decrypt_password(id)
 					typing("Decrypting...  ","cyan")
 					clear()
 					cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					c=input()
-					decrypter.reencrypt_password(id,decrypted_final_password)#1.1 implementation
+					decrypter.reencrypt_password(id,decrypted_final_password)
 					if c=="-c":pyperclip.copy(decrypted_final_password)
 				except FileNotFoundError:
 					clear()
@@ -212,8 +220,8 @@ class screen:
 				ver=input(f"Are you sure to delete {id_name}?[y/n]: ")
 				if ver=="y":
 					try:
-						os.remove(f"{key_process().path_dir}\\{id_name}\\password")
-						os.rmdir(f"{key_process().path_dir}\\{id_name}")
+						os.remove(f"{KeyProcess().path_dir}\\{id_name}\\password")
+						os.rmdir(f"{KeyProcess().path_dir}\\{id_name}")
 						cprint(f"Successfully deleted {id_name}",'yellow')
 						sleep(1.7)
 					except OSError as e:
@@ -232,5 +240,6 @@ class screen:
 				sleep(2)
 
 if __name__=="__main__":
-	key_process().encrypt_key()
+	#KeyProcess().reencrypt_password("id","Password")
+	Screen().home_elements()
 	

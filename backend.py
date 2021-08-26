@@ -186,9 +186,9 @@ class Screen:
 				mgr_input_password=input(f"Enter {id} password: ")
 				if mgr_input_password=="" or '-r' in mgr_input_password:
 					splited_input=mgr_input_password.split()
-					print(splited_input[1],type(splited_input))
+					#print(splited_input[1],type(splited_input))
 					value = int(splited_input[1])
-					print(value,type(value))
+					#print(value,type(value))
 					mgr_input_password=generate_random_password(value)
 					#except:mgr_input_password=generate_random_password(40)
 					cprint(f"Generated password: {mgr_input_password}")

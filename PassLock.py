@@ -26,4 +26,3 @@ except FileNotFoundError as e:print("path intrupted, Try to open AES-Encrypted-P
 except Exception:
     cprint(f"Something went wrong, restart required",'red')
     cprint("kill current terminal and run this again\n",'yellow')
-    

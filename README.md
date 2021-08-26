@@ -79,6 +79,7 @@ _____________
 <code>show  </code>Decrypt and show password<br>
 <code>-c    </code>copy password to clipboard<br>
 <code>-r    </code>or leaving password blank will generate a random password<br>
+<code>-r 40 </code> initialize random password with key length<br>
 <code>--help</code>help<br>
 <code>--Exit</code>close all files and exit console application<br>
 

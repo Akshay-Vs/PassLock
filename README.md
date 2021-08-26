@@ -6,16 +6,18 @@ ______
 
 <pr><br>
 PassLock is a password manager and password generator that encrypts passwords using AES and save them securely on your local machine.
-The password is encrypted and decrypted with a 32-bit key embedded in the master password and will get updated with each use.
+The password is encrypted and decrypted with a 32-bit (upto 220bit) key defined by user and will get updated with each use.
 So extending the length of the master password will steadily improve the overall security and key length.
 PassLock also generates a 40-bit long password that contains lowercase, uppercase letters, numbers, and symbols.
+Passlock's 220bit AES encryption and infinitely long password generator make your passwords nearly impossible to break.
 Passlock also has a console user interface that will definitely help to enhance your experience.
 </pr>
 <br>
 
 <h2 align="left"><u><b>Features</b></u></h2>
   &bull;  AES Encryption<br>
-  &bull; 40-bit long random password generator<br>
+  &bull; User defined key<br>
+  &bull; Unlimited length random password generator<br>
   &bull; Auto Copy<br>
   &bull; Custom path<br>
   &bull; Console Animations<br>
@@ -35,11 +37,11 @@ Passlock also has a console user interface that will definitely help to enhance 
 
    
 | requermets | requered version |
-| ------ | ------ |
-| Python | 3.7+ |
-| Crypto | 1.4+ |
-| termcolor | 1.1+ |
-| pyperclip | 1.8+ |
+| ---------  | ---------------- |
+| Python     | 3.7+             |
+| Crypto     | 1.4+             |
+| termcolor  | 1.1+             |
+| pyperclip  | 1.8+             |
 
 <h2 align='left'><u><b>Devlopment</b></u></h2>
 &bull; Version 1.0<br>
@@ -48,11 +50,13 @@ Passlock also has a console user interface that will definitely help to enhance 
 
 | vesrion | release date |features|
 |---------|--------------|--------|
-| 0.4  |   18-8-2021     |Release
-| 1.0  | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
+| 0.4     |   18-8-2021  |Release
+| 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
+| 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
 
 
-&bull; Author: Akshay Vs<br>
+
+&bull; Devoloper: Akshay Vs<br>
 <h4 align="left"><b>Connect with me</b></h4>
 <p align="left">
 <a href="https://twitter.com/@Akshayv69128812" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@Akshayv69128812" height="30" width="40" /></a>
@@ -64,11 +68,10 @@ Passlock also has a console user interface that will definitely help to enhance 
 _____________
 
 <h2 align='left'><u><b>Running</b></u></h2>
-&#9724;Extract the Zip file</br>
+&#9724;Extract the Zip file<br>
 &#9724;Run PassLock to open Password manager<br>
 &#9724;Enter path of a directory to save encrypted password (Recomended: Create a seperate directory to save password)<i> eg: D:\AES-Ecrypted-Password-Manager\data</i><br>
-&#9724;Create a master password
- <h4 align='left'>Recomented IDE: Visual Studio Code 1.5+</h4>
+&#9724;Create a master passwors
 
 
 <h2 align='left'><u><b>Commands</b></u></h2>
@@ -78,14 +81,8 @@ _____________
 <code>-r    </code>or leaving password blank will generate a random password<br>
 <code>--help</code>help<br>
 <code>--Exit</code>close all files and exit console application<br>
- 
- <h2 aling='left'><u><b>Error Messages</b></u></h2>
- &#9724; <code>>>>path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory</code><br>
-  This means that you are not running the PassLock application properly.
- <b>You cannot use the 'AES-Encrypted-Password-Manager' directory inside another folder or PassLock.py alone.Open the directory insted</b><br><br>
- &#9724; <code>>>>Something went wrong, restart requered</code></br>
- This means that something is not working as expected and can be fixed by restarting the code.
-<br>
+
+
 <h2 align='left'><u><b>License and Copyright</b></u></h2>
 Lisence: MIT Lisence<br>
 &#169; 2021 Akshay Vs

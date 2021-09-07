@@ -126,8 +126,8 @@ class KeyProcess:
 			cprint("Access denied\nExiting Application...","red",attrs=["bold"])
 			sleep(2)
 			clear();os.system("exit()")
-		
-		#print(decrypt)#-->temp
+			
+			
 		
 
 	def encrypt_password(self,raw_password):

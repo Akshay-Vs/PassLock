@@ -187,7 +187,10 @@ class Screen:
 				if mgr_input_password=="" or '-r' in mgr_input_password:
 					splited_input=mgr_input_password.split()
 					#print(splited_input[1],type(splited_input))
-					value = int(splited_input[1])
+					try:value = int(splited_input[1])
+					except:
+						cprint("Invalid input, Excepted a number after -r. eg: -r 40")
+						input()
 					#print(value,type(value))
 					mgr_input_password=generate_random_password(value)
 					#except:mgr_input_password=generate_random_password(40)
@@ -238,8 +241,3 @@ class Screen:
 			else:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
-
-if __name__=="__main__":
-	#KeyProcess().reencrypt_password("id","Password")
-	Screen().home_elements()
-	

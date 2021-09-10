@@ -166,9 +166,18 @@ class Screen:
 
 		while True:
 			clear()
-			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n--del to delete password\n\n","green",attrs=["bold"])
+			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n--del to delete password\n--p to change directory path\n\n","green",attrs=["bold"])
 			cprint("new  - create new passwords\nshow - show currently saved pasword\n","green",attrs=["bold","blink"])
 			user_input=input("Enter input: ")
+
+			if user_input == "--p":
+				old_path=open("path_dir","r").read()
+				new_path=input("Enter new path: ")
+				path_dir=open("path_dir","w")
+				path_dir.write(new_path)
+				path_dir.close()
+				
+
 
 			if user_input=="--Exit":
 				clear()
@@ -241,3 +250,5 @@ class Screen:
 			else:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
+				
+				

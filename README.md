@@ -43,12 +43,12 @@ Passlock also has a console user interface that will definitely help to enhance 
 | termcolor  | 1.1+             |
 | pyperclip  | 1.8+             |
 
-<h2 align='left'><u><b>Devlopment</b></u></h2>
+<h2 align='left'><u><b>Development</b></u></h2>
 &bull; Version 1.0<br>
 &bull; Version history:
 <tab>
 
-| vesrion | release date |features|
+| version | release date |features|
 |---------|--------------|--------|
 | 0.4     |   18-8-2021  |Release
 | 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
@@ -56,7 +56,7 @@ Passlock also has a console user interface that will definitely help to enhance 
 
 
 
-&bull; Devoloper: Akshay Vs<br>
+&bull; Developer: Akshay Vs<br>
 <h4 align="left"><b>Connect with me</b></h4>
 <p align="left">
 <a href="https://twitter.com/@Akshayv69128812" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@Akshayv69128812" height="30" width="40" /></a>

@@ -65,8 +65,8 @@ class KeyProcess:
 		clear()
 		#initializing all process for the first use
 		#opening requered files
-		self.raw_key=raw_key
-		print(raw_key,self.raw_key)
+		self.raw_key=raw_key			
+		#print(raw_key,self.raw_key)			
 		try:
 			self.path_dir=open("path_dir","r+").read()
 			self.rootb=open("lib\ekey","rb")
@@ -176,6 +176,7 @@ class Screen:
 				path_dir=open("path_dir","w")
 				path_dir.write(new_path)
 				path_dir.close()
+				cprint("Path updated","yellow")
 				
 
 
@@ -193,7 +194,7 @@ class Screen:
 			elif user_input=="new":
 				id=input("Create an identification name: ")
 				mgr_input_password=input(f"Enter {id} password: ")
-				if mgr_input_password=="" or '-r' in mgr_input_password:
+				if mgr_input_password== '-r' in mgr_input_password:
 					splited_input=mgr_input_password.split()
 					#print(splited_input[1],type(splited_input))
 					try:value = int(splited_input[1])
@@ -205,9 +206,15 @@ class Screen:
 					#except:mgr_input_password=generate_random_password(40)
 					cprint(f"Generated password: {mgr_input_password}")
 					sleep(1)
+				elif mgr_input_password=="":
+					mgr_input_password=generate_random_password(40)
+					cprint(f"Generated password: {mgr_input_password}")
+
 				manager=PasswordManager(id,mgr_input_password)
 				manager.take_password()
 				sleep(1.792)
+
+				
 
 			elif user_input=="show":
 				id=input("Enter identification name: ")

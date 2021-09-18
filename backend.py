@@ -59,10 +59,7 @@ class KeyProcess:
 	global Master_password
 	def __init__(self,raw_key=Master_password):
 		clear()
-		#initializing all process for the first use
-		#opening requered files
 		self.raw_key=raw_key			
-		#print(raw_key,self.raw_key)			
 		try:
 			self.path_dir=open("path_dir","r+").read()
 			self.rootb=open("lib\ekey","rb")
@@ -82,8 +79,7 @@ class KeyProcess:
 				self.rootw.write(splited_encrypted_password)#saving encrypted password
 				cprint("Password Created\nloading...",'green',attrs=["bold"]);sleep(1)
 				os.system("exit()")
-				#with open(__file__,"r") as rnf:
-				#	exec(rnf.read())
+
 					
 			else:
 				self.rootw.close()
@@ -102,12 +98,11 @@ class KeyProcess:
 		encrypted_root=self.rootb.read()
 		t=str(encrypted_root)
 		splitted_encrypted_root=(t.split("'")[-2])#splitting encrypted key
-		#self.rootw.write(splitted_encrypted_key)#saving
 
-		#print(encrypted_key)#-->temp
+
 		decryptepted_final_key=aes.decrypt(splitted_encrypted_root)#splitted_encrypted_root
-		#print(decrypt)
-		
+
+
 		
 		if decryptepted_final_key==self.raw_key:
 			reencrypted_key=aes.encrypt(decryptepted_final_key)#reencryption decrypted key for better security
@@ -185,21 +180,20 @@ class Screen:
 				except:os.abort()
 				os.system("exit()")
 				clear()
+				pyperclip.copy("Your passwords are protected by passlock")
+				notify("Your Passwords are protected","Thanks For Using PassLock")
 				break
 
 			elif user_input=="new":
 				id=input("Create an identification name: ")
 				mgr_input_password=input(f"Enter {id} password: ")
-				if mgr_input_password== '-r' in mgr_input_password:
+				if '-r' in mgr_input_password or mgr_input_password=='':
 					splited_input=mgr_input_password.split()
-					#print(splited_input[1],type(splited_input))
 					try:value = int(splited_input[1])
 					except:
 						cprint("Invalid input, Excepted a number after -r. eg: -r 40")
 						input()
-					#print(value,type(value))
 					mgr_input_password=generate_random_password(value)
-					#except:mgr_input_password=generate_random_password(40)
 					cprint(f"Generated password: {mgr_input_password}")
 					sleep(1)
 				elif mgr_input_password=="":

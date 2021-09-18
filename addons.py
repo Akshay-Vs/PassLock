@@ -11,6 +11,8 @@ from Crypto import Random
 from Crypto.Cipher import AES
 import pyperclip
 
+if os.name=='posix':pass
+else:import notify
 def typing(text: str,color="yellow",typing_speed=50):
     for character in text:
         sys.stdout.write(colored(character,color))
@@ -21,10 +23,10 @@ def clear():
    if os.name=='posix':_=os.system('clear')
    else:_=os.system('cls')
 
-def generate_random_password():
+def generate_random_password(maxr=40):
     symbols=['!','@','#','$','%','&','_','+','?','/']
     source = string.ascii_uppercase + string.ascii_lowercase + string.digits+choice(symbols)
-    return ''.join(choice(f"{source},{choice(symbols)}{choice(symbols)}") for x in range(1,40))
+    return ''.join(choice(f"{source},{choice(symbols)}{choice(symbols)}") for x in range(1,maxr))
 
 def initialize(path):
     with open(path,"r") as rnf:
@@ -35,3 +37,4 @@ def initialize(path):
 
 if __name__=="__main__":
     print(generate_random_password())
+    notify("notification","content")

@@ -1,6 +1,7 @@
 from os import remove
 from addons import *
-
+clear()
+Master_password=input("Enter your secret key: ")
 class PasswordManager:
 
 	def __init__(self,id_name,password):
@@ -9,11 +10,6 @@ class PasswordManager:
 		
 	def take_password(self):
 		path_dir=open("path_dir","r+").read()
-		#except:
-		#	cprint("Path is not defined","red",attrs=['bold'])
-		#	path_dir=open("path_dir","w+").write(str(input()))
-		#	open("data","w+")
-
 		path = f"{path_dir}\{self.id_name}"#path
 
 		try:
@@ -60,8 +56,8 @@ class AESCipher(object):
         return s[:-ord(s[len(s)-1:])]
 
 class KeyProcess:
-	global rawkey
-	def __init__(self,raw_key="none"):
+	global Master_password
+	def __init__(self,raw_key=Master_password):
 		clear()
 		#initializing all process for the first use
 		#opening requered files
@@ -96,11 +92,11 @@ class KeyProcess:
 				finally:raise ValueError("Passwords doesnt match")#fire value error 
 	
 	def encrypt_key(self):
+		global Master_password
 		clear()
-		#cprint("Enter your Master password","cyan",attrs=["bold"])
-		#raw_key=raw_password_input()
 		cprint("Enter your Master password","cyan",attrs=["bold"])
 		self.raw_key=input("Enter Password: ")
+		Master_password=self.raw_key
 		aes=AESCipher(self.raw_key)
 		#encrypted_key=aes.encrypt(raw_key)
 		encrypted_root=self.rootb.read()
@@ -223,10 +219,17 @@ class Screen:
 					decrypted_final_password=decrypter.decrypt_password(id)
 					typing("Decrypting...  ","cyan")
 					clear()
-					cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
+					if decrypted_final_password !='':
+						cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
+					elif decrypted_final_password=='':
+						cprint(f'Name: {id}\nPassword: *******\nYour passwords are kept safe\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					c=input()
 					decrypter.reencrypt_password(id,decrypted_final_password)
-					if c=="-c":pyperclip.copy(decrypted_final_password)
+					if c=="-c":
+						if decrypted_final_password !='':
+							pyperclip.copy(decrypted_final_password)
+						elif decrypted_final_password=='':
+							pyperclip.copy("You are using PassLock")
 				except FileNotFoundError:
 					clear()
 					typing("searching...",'cyan',60);sleep(1)
@@ -258,4 +261,5 @@ class Screen:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
 				
-				
+if __name__=="__main__":
+	Screen().home_elements()			

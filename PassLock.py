@@ -13,7 +13,7 @@ from backend import *
 
 clear()
 try:
-    path_dir=open("path_dir")
+    path_dir=open("path_dir",'r')
     path_dir.close()
     input_key=cprint("Enter Input: ")
 except:
@@ -25,8 +25,8 @@ except:
 try:KeyProcess(raw_key=input_key).encrypt_key()
 except FileNotFoundError as e:print("path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory\n")
 except NameError:initialize(__file__)
-except ValueError:
-    cprint("Key Interupted, Try again")
+except ValueError as e:
+    cprint("Key Interupted, Try again",e)
     os.system("exit()")
 except Exception:
    cprint(f"Something went wrong, restart required",'red')

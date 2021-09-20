@@ -119,8 +119,6 @@ class KeyProcess:
 			clear();os.system("exit()")
 			
 			
-		
-
 	def encrypt_password(self,raw_password):
 		aes=AESCipher(self.raw_key)
 		raw_encrypted_password=aes.encrypt(raw_password)
@@ -144,9 +142,7 @@ class KeyProcess:
 		root=open(f"{self.path_dir}\\{id}\\password",'w')
 		t=str(reencrypted_password)
 		splitted_reencrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
-		root.write(splitted_reencrypted_password)
-
-		
+		root.write(splitted_reencrypted_password)	
 
 class Screen:
 
@@ -257,6 +253,4 @@ class Screen:
 			else:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
-				
-if __name__=="__main__":
-	Screen().home_elements()			
+							

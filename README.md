@@ -50,7 +50,7 @@ Passlock also has a console user interface that will definitely help to enhance 
 
 | version | release date |features|
 |---------|--------------|--------|
-| 0.4     | 18-8-2021    |Release
+| 0.4     | 18-8-2021    |16-bit password encryption and decryption<br>Auto clipboard copy
 | 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
 | 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
 | 1.5     | 30-8-2021    |Improved Startup speed<br>Fixed Random Password generation bug

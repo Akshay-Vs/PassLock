@@ -44,15 +44,17 @@ Passlock also has a console user interface that will definitely help to enhance 
 | pyperclip  | 1.8+             |
 
 <h2 align='left'><u><b>Development</b></u></h2>
-&bull; Version 1.0<br>
-&bull; Version history:
+&bull; Version 1.6.2<br>
+&bull; Major Update History:
 <tab>
 
 | version | release date |features|
 |---------|--------------|--------|
-| 0.4     |   18-8-2021  |Release
+| 0.4     | 18-8-2021    |Release
 | 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
-| 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 32 bit)
+| 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
+| 1.5     | 01-9-2021    |Improved Startup speed<br>Fixed Random Password generation bug<br>Added seperate key to encrypt password to improve security
+| 1.6.2   | 16-9-2021    |Added new command to change path<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption
 
 
 

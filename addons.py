@@ -11,6 +11,7 @@ from Crypto import Random
 from Crypto.Cipher import AES
 import pyperclip
 import msvcrt
+import shutil
 
 if os.name=='posix':pass
 else:from notify import notify
@@ -58,4 +59,4 @@ def password_input(prompt=''):
 if __name__=="__main__":
     password_input("Test password: ")
     print(generate_random_password())
-    notify("notification","content")
+    notify("Title","content")

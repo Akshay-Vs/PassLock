@@ -254,6 +254,13 @@ class Screen:
 				print(listToStr.replace(' ', '\n'))
 				input()
 
+			elif user_input=="--move":
+				old_path=open("path_dir",'r').read()
+				destination_path=input("Enter destination path: ")
+				shutil.move(old_path,destination_path)
+				set_default=input("Do you want to set new path as default?[y/n]: ")
+				if set_default == "y" or "Y":open("path_dir",'w').write(destination_path)
+				else:cprint("Files moved successfully")
 				
 			else:
 				cprint("Invalid input","red",attrs=['bold'])

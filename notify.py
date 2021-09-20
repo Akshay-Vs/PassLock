@@ -7,15 +7,14 @@ import time
 import requests
 
 class notify:
-    def __init__(self, title, msg,time=10):
+    def __init__(self, title, msg,t=10):
         message_map = {
                 win32con.WM_DESTROY: self.OnDestroy,
         }
-        # Register the Window class.
         wc = WNDCLASS()
         hinst = wc.hInstance = GetModuleHandle(None)
         wc.lpszClassName = "PythonTaskbar"
-        wc.lpfnWndProc = message_map # could also specify a wndproc.
+        wc.lpfnWndProc = message_map
         classAtom = RegisterClass(wc)
         # Create the Window.
         style = win32con.WS_OVERLAPPED | win32con.WS_SYSMENU
@@ -31,17 +30,17 @@ class notify:
         except:
           hicon = LoadIcon(0, win32con.IDI_APPLICATION)
         flags = NIF_ICON | NIF_MESSAGE | NIF_TIP
-        nid = (self.hwnd, 0, flags, win32con.WM_USER+20, hicon, "tooltip")
+        nid = (self.hwnd, 0, flags, win32con.WM_USER+20, hicon, "passlock.png")
         Shell_NotifyIcon(NIM_ADD, nid)
         Shell_NotifyIcon(NIM_MODIFY, \
                          (self.hwnd, 0, NIF_INFO, win32con.WM_USER+20,\
-                          hicon, "Balloon  tooltip",msg,200,title))
-        time.sleep(time)
+                          hicon, "Python",msg,200,title))
+        time.sleep(t)
         DestroyWindow(self.hwnd)
     def OnDestroy(self, hwnd, msg, wparam, lparam):
         nid = (self.hwnd, 0)
         Shell_NotifyIcon(NIM_DELETE, nid)
-        PostQuitMessage(0) # Terminate the app.
+        PostQuitMessage(0) 
 
 
 

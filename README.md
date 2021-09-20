@@ -53,9 +53,9 @@ Passlock also has a console user interface that will definitely help to enhance 
 | 0.4     | 18-8-2021    |Release
 | 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
 | 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
-| 1.5     | 01-9-2021    |Improved Startup speed<br>Fixed Random Password generation bug<br>Added seperate key to encrypt password to improve security
-| 1.6.2   | 16-9-2021    |Added new command to change path<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption
-
+| 1.5     | 30-8-2021    |Improved Startup speed<br>Fixed Random Password generation bug
+| 1.6     | 06-9-2021    |Added new command to change path<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption<br>Added --list command to list all saved password
+|1.7      | 16-9-2021    |Security Update:<br>  &nbsp;&nbsp; - Added seperate key to encrypt password to improve security<br>  &nbsp;&nbsp; - Fixed Some Security faults<br>  &nbsp;&nbsp; - Added a Process Manager that constanty monitor all processes(experimental)
 
 
 &bull; Developer: Akshay Vs<br>

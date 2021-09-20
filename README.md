@@ -88,6 +88,3 @@ _____________
 Lisence: MIT Lisence<br>
 &#169; 2021 Akshay Vs
  
- <h2>Uncompleted tasks</h2>
- <p>&bull; Add terminal user interface<br>&bull; add commands for moving,changing path<br>&bull; Build a process monitor</p>
- 

@@ -1,7 +1,7 @@
 from os import remove
 from addons import *
 clear()
-Master_password=input("Enter your secret key: ")
+Master_password=password_input("Enter your secret key: ")
 class PasswordManager:
 
 	def __init__(self,id_name,password):
@@ -68,7 +68,7 @@ class KeyProcess:
 			
 			self.rootw=open("lib\ekey","w+")
 			self.rootb=open("lib\ekey","rb")
-			self.new_raw_password=input("Create a new password: ")
+			self.new_raw_password=password_input("Create a new password: ")
 			self.conferm_password=input("Confirm password: ")
 
 			if self.new_raw_password==self.conferm_password:
@@ -91,7 +91,7 @@ class KeyProcess:
 		global Master_password
 		clear()
 		cprint("Enter your Master password","cyan",attrs=["bold"])
-		self.raw_key=input("Enter Password: ")
+		self.raw_key=password_input("Enter Password: ")
 		Master_password=self.raw_key
 		aes=AESCipher(self.raw_key)
 		#encrypted_key=aes.encrypt(raw_key)
@@ -157,7 +157,7 @@ class Screen:
 
 		while True:
 			clear()
-			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n--del to delete password\n--p to change directory path\n\n","green",attrs=["bold"])
+			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n","green",attrs=["bold"])
 			cprint("new  - create new passwords\nshow - show currently saved pasword\n","green",attrs=["bold","blink"])
 			user_input=input("Enter input: ")
 
@@ -174,14 +174,11 @@ class Screen:
 			if user_input=="--Exit":
 				clear()
 				typing("\tThanks for using",'cyan',typing_speed=40)
-				try:
-					os.close("__pycahe__")
-					os.remove("__pycahe__")
-				except:os.abort()
-				os.system("exit()")
-				clear()
 				pyperclip.copy("Your passwords are protected by passlock")
-				notify("Your Passwords are protected","Thanks For Using PassLock")
+				notify("Your Passwords are protected","Hold on, We are verifiying your passwords once again\nThanks For Using PassLock")
+				clear()
+				sleep(0.739)
+				os.system("exit()")
 				break
 
 			elif user_input=="new":
@@ -192,7 +189,7 @@ class Screen:
 					try:value = int(splited_input[1])
 					except:
 						cprint("Invalid input, Excepted a number after -r. eg: -r 40")
-						input()
+						input("press enter to continue")
 					mgr_input_password=generate_random_password(value)
 					cprint(f"Generated password: {mgr_input_password}")
 					sleep(1)
@@ -216,7 +213,7 @@ class Screen:
 					if decrypted_final_password !='':
 						cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					elif decrypted_final_password=='':
-						cprint(f'Name: {id}\nPassword: *******\nYour passwords are kept safe\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
+						cprint(f'Name: {id}\nPassword: *******\nYour passwords are kept safe\nTry to enter the correct 	\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					c=input()
 					decrypter.reencrypt_password(id,decrypted_final_password)
 					if c=="-c":
@@ -250,6 +247,13 @@ class Screen:
 			elif user_input=="--help":
 				import help
 				help.help()
+
+			elif user_input=="--list":
+				dirs=os.listdir(open('path_dir','r').read())
+				listToStr = ' '.join(map(str, dirs))
+				print(listToStr.replace(' ', '\n'))
+				input()
+
 				
 			else:
 				cprint("Invalid input","red",attrs=['bold'])

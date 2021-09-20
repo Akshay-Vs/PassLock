@@ -1,8 +1,8 @@
 from addons import *
 def help():
     clear()
-    typing("This password manager encrypts and save your passwords safely using Advanced Encryption Standards\nAn id_name is used to identify passwords, This names are not encrypted and able to see in the defiened directory\n",typing_speed=100)
-    cprint(''' 
+    cprint("""\tCommands\n\n'new' to create new password\n'show' to show saved passwords\n\n--del to delete password\n--p to change directory path\n--list to list all password IDs\n--Exit to exit console\n'-c' to copy password to clipboard\n--r n to generate a random password with n length, eg: --r (50) will generate a 40 bit long password.Default is 40""","cyan",attrs=["bold"])
+    typing('''\nRecomended way to store passwords 
     path(C:\directory\data)
                |
                |-directory
@@ -12,10 +12,10 @@ def help():
                     |   |    |-encrypted_password(1IwYSXyl...wCy=)
                     |     
                     |-lib
-                    |  |-ekey''','green',attrs=['bold'])
-    cprint("\n\tcommands",'cyan',attrs=['bold'])
-    cprint("'new' to create new password\n'show' to show saved passwords\n'--del' to edit passwords and identification name\n'-c' to copy password to clipboard\n\nleaving passwords blank will geanerete a random password",'cyan',attrs=['bold'])
-    typing('\nNOTE:changing/deletion path_dir or ekey after first use will completly distroy your passwords',typing_speed=75)
-    cprint("\tPython password manager\n\nversion 1.0\nEncryption:Advanced Encryption Standard (AES)\nAuthor: Akshay Vs\n\tgithub.com/Akshay-Vs/\n\tinstagram.com/__akshay_v5__/",'cyan')
+                    |  |-ekey''',typing_speed=150)
+    cprint("\tPython password manager\n\nversion 2.0\nEncryption:Advanced Encryption Standard (AES)\nAuthor: Akshay Vs\n\tgithub.com/Akshay-Vs/\n\tinstagram.com/__akshay_v5__/",'cyan')
 
     input()
+
+if __name__=="__main__":
+    help()

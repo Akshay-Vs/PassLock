@@ -1,6 +1,7 @@
 from os import remove
 from addons import *
-
+clear()
+Master_password=input("Enter your secret key: ")
 class PasswordManager:
 
 	def __init__(self,id_name,password):
@@ -9,11 +10,6 @@ class PasswordManager:
 		
 	def take_password(self):
 		path_dir=open("path_dir","r+").read()
-		#except:
-		#	cprint("Path is not defined","red",attrs=['bold'])
-		#	path_dir=open("path_dir","w+").write(str(input()))
-		#	open("data","w+")
-
 		path = f"{path_dir}\{self.id_name}"#path
 
 		try:
@@ -60,13 +56,10 @@ class AESCipher(object):
         return s[:-ord(s[len(s)-1:])]
 
 class KeyProcess:
-	global rawkey
-	def __init__(self,raw_key="none"):
+	global Master_password
+	def __init__(self,raw_key=Master_password):
 		clear()
-		#initializing all process for the first use
-		#opening requered files
 		self.raw_key=raw_key			
-		#print(raw_key,self.raw_key)			
 		try:
 			self.path_dir=open("path_dir","r+").read()
 			self.rootb=open("lib\ekey","rb")
@@ -86,8 +79,7 @@ class KeyProcess:
 				self.rootw.write(splited_encrypted_password)#saving encrypted password
 				cprint("Password Created\nloading...",'green',attrs=["bold"]);sleep(1)
 				os.system("exit()")
-				#with open(__file__,"r") as rnf:
-				#	exec(rnf.read())
+
 					
 			else:
 				self.rootw.close()
@@ -96,22 +88,21 @@ class KeyProcess:
 				finally:raise ValueError("Passwords doesnt match")#fire value error 
 	
 	def encrypt_key(self):
+		global Master_password
 		clear()
-		#cprint("Enter your Master password","cyan",attrs=["bold"])
-		#raw_key=raw_password_input()
 		cprint("Enter your Master password","cyan",attrs=["bold"])
 		self.raw_key=input("Enter Password: ")
+		Master_password=self.raw_key
 		aes=AESCipher(self.raw_key)
 		#encrypted_key=aes.encrypt(raw_key)
 		encrypted_root=self.rootb.read()
 		t=str(encrypted_root)
 		splitted_encrypted_root=(t.split("'")[-2])#splitting encrypted key
-		#self.rootw.write(splitted_encrypted_key)#saving
 
-		#print(encrypted_key)#-->temp
+
 		decryptepted_final_key=aes.decrypt(splitted_encrypted_root)#splitted_encrypted_root
-		#print(decrypt)
-		
+
+
 		
 		if decryptepted_final_key==self.raw_key:
 			reencrypted_key=aes.encrypt(decryptepted_final_key)#reencryption decrypted key for better security
@@ -166,7 +157,7 @@ class Screen:
 
 		while True:
 			clear()
-			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n--del to delete password\n--p to change directory path\n\n","green",attrs=["bold"])
+			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n","green",attrs=["bold"])
 			cprint("new  - create new passwords\nshow - show currently saved pasword\n","green",attrs=["bold","blink"])
 			user_input=input("Enter input: ")
 
@@ -183,27 +174,22 @@ class Screen:
 			if user_input=="--Exit":
 				clear()
 				typing("\tThanks for using",'cyan',typing_speed=40)
-				try:
-					os.close("__pycahe__")
-					os.remove("__pycahe__")
-				except:os.abort()
-				os.system("exit()")
+				pyperclip.copy("Your passwords are protected by passlock")
 				clear()
+				sleep(0.739)
+				os.system("exit()")
 				break
 
 			elif user_input=="new":
 				id=input("Create an identification name: ")
 				mgr_input_password=input(f"Enter {id} password: ")
-				if mgr_input_password== '-r' in mgr_input_password:
+				if '-r' in mgr_input_password or mgr_input_password=='':
 					splited_input=mgr_input_password.split()
-					#print(splited_input[1],type(splited_input))
 					try:value = int(splited_input[1])
 					except:
 						cprint("Invalid input, Excepted a number after -r. eg: -r 40")
-						input()
-					#print(value,type(value))
+						input("press enter to continue")
 					mgr_input_password=generate_random_password(value)
-					#except:mgr_input_password=generate_random_password(40)
 					cprint(f"Generated password: {mgr_input_password}")
 					sleep(1)
 				elif mgr_input_password=="":
@@ -223,10 +209,17 @@ class Screen:
 					decrypted_final_password=decrypter.decrypt_password(id)
 					typing("Decrypting...  ","cyan")
 					clear()
-					cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
+					if decrypted_final_password !='':
+						cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
+					elif decrypted_final_password=='':
+						cprint(f'Name: {id}\nPassword: *******\nYour passwords are kept safe\nTry to enter the correct 	\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
 					c=input()
 					decrypter.reencrypt_password(id,decrypted_final_password)
-					if c=="-c":pyperclip.copy(decrypted_final_password)
+					if c=="-c":
+						if decrypted_final_password !='':
+							pyperclip.copy(decrypted_final_password)
+						elif decrypted_final_password=='':
+							pyperclip.copy("You are using PassLock")
 				except FileNotFoundError:
 					clear()
 					typing("searching...",'cyan',60);sleep(1)
@@ -253,9 +246,17 @@ class Screen:
 			elif user_input=="--help":
 				import help
 				help.help()
+
+			elif user_input=="--list":
+				dirs=os.listdir(open('path_dir','r').read())
+				listToStr = ' '.join(map(str, dirs))
+				print(listToStr.replace(' ', '\n'))
+				input()
+
 				
 			else:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
 				
-				
+if __name__=="__main__":
+	Screen().home_elements()			

@@ -29,7 +29,7 @@ Passlock also has a console user interface that will definitely help to enhance 
  <h2 align='left'><u><b>Installation</b></u></h2>
  <p>Install using git bash 
  <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code>
-  <br>or click <a href="https://github.com/Akshay-Vs/AES-encrypted-password-manager/archive/refs/heads/main.zip">download</a>
+  <br>or click <a href="https://github.com/Akshay-Vs/AES-encrypted-password-manager/archive/refs/heads/main.zip">download zip</a>
  
  <h2 align='left'><u><b>Requerments</b></u></h2>
  &bull; PassLock requered python 3.7 and above<br>
@@ -53,8 +53,7 @@ Passlock also has a console user interface that will definitely help to enhance 
 | 0.4     | 18-8-2021    |16-bit password encryption and decryption
 | 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
 | 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
-| 1.5     | 30-8-2021    |Improved Startup speed<br>Fixed Random Password generation bug
-| 1.6     | 06-9-2021    |Added new command to change path<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption<br>Added --list command to list all saved password
+| 1.6     | 06-9-2021    |Added new command to change path<br>Improved Startup speed<br>Fixed Random Password generation bug<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption<br>Added --list command to list all saved password
 |1.7      | 20-9-2021    |Security Update:<br>  &nbsp;&nbsp; - Added seperate key to encrypt password to improve security<br>  &nbsp;&nbsp; - Fixed Some Security faults<br>  &nbsp;&nbsp; - Added a Process Manager that constanty monitor all processes(experimental)
 
 

@@ -73,7 +73,7 @@ _____________
 &#9724;Extract the Zip file<br>
 &#9724;Run PassLock to open Password manager<br>
 &#9724;Enter path of a directory to save encrypted password (Recomended: Create a seperate directory to save password)<i> eg: D:\AES-Ecrypted-Password-Manager\data</i><br>
-&#9724;Create a master passwors
+&#9724;Create a master password
 
 
 <h2 align='left'><u><b>Commands</b></u></h2>

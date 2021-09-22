@@ -9,6 +9,8 @@ if 'pyperclip' not in sys.modules:
     os.system('pip3 install pyperclip')
 if 'Crypto' not in sys.modules:
     os.system('pip3 install Crypto')
+if 'pycrypto' not in sys.modules:
+    os.system('pip3 install pycrypto')
 
 
 from addons import *

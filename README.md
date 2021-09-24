@@ -90,4 +90,6 @@ _____________
 <h2 align='left'><u><b>License and Copyright</b></u></h2>
 Lisence: MIT Lisence<br>
 &#169; 2021 Akshay Vs
- 
+
+ <h2>Things to do</h2>
+ - TUI interface

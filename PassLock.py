@@ -1,46 +1,67 @@
-from os import DirEntry
 import sys
-from typing import Dict
-try:import posix as os
-except:import os
-if 'termcolor' not in sys.modules:
-    os.system('pip3 install termcolor')
-if 'pyperclip' not in sys.modules:
-    os.system('pip3 install pyperclip')
-if 'Crypto' not in sys.modules:
-    os.system('pip3 install Crypto')
+clr='blue'
+for i in range(3):#autofix with 3 iterations
+    try:
+        import os
+        from addons import *
+        from process import *
 
+    except ModuleNotFoundError:
+        if os.name=='posix':import posix as os
+        print("\n\nInstalling requirements\nPlease wait.... \n")
+        if 'termcolor' not in sys.modules:
+            os.system('pip3 install termcolor')
+        if 'pyperclip' not in sys.modules:
+            os.system('pip3 install pyperclip')
+        if 'Crypto' not in sys.modules:
+            os.system('pip3 install Crypto')
 
-from addons import *
-from backend import *
+while True:
 
-clear()
-try:
-    path_dir=open("path_dir",'r')
-    path_dir.close()
-    input_key=cprint("Enter Input: ")
-except:
-    print("Where do I store passwords?")
-    #cprint("Be sure to enter an existing path, 1.0 doesn't deals with that issue, FIX: Edit path_dir with a valid path",'yellow')#This will get omitted after a couple of updates.
-    path=input("Enter path: ")
-    path_dir=open("path_dir","w")
-    path_dir.write(f"{path}\passlock")
-    path_dir.close()
-    os.mkdir(open("path_dir",'r').read())
+    try:
+        screen=Screen()
+        if 'pass' in open('data/entry.psk','r'):
+            #<-- New Code write here
+            path_dir=open("path_dir",'r')
+            screen.ui("login_screen_top")
 
-try:KeyProcess(raw_key=input_key).encrypt_key()
-except FileNotFoundError as e:print("path intrupted, Try to open AES-Encrypted-Password-manager folder as home directory\n")
-except NameError:initialize(__file__)
-except ValueError as e:
-    notify("Key Interupted","Something unexpected happened\nRun PassLock code once again",15)
-    cprint("Key Interupted, Try again",e)
-    os.system("exit()")
-except KeyError:
-    notify("Key Processing unit crashed","Something unexpected happened\nRun System diagnostics")
-    try:initialize()
-    except:
-        notify("Auto Restart Failed","System initializer almost fixed all isses, but failed to restart. Run PassLock once again")
+        else:
+            screen.ui('create_login')
+            clear()
+            open('data/entry.psk','w+').write("pass")
+
+    except IOError:
+
+        #IO_PATH_SECTION
+
+        cprint("Where do I store passwords?",clr)
+        path=input("Enter path: ")
+        clear()
+        path_dir=open("path_dir","w")
+        path_dir.write(f"{path}\passlock")
+        path_dir.close()
+        os.mkdir(open("path_dir",'r').read())
+        Screen().ui('create_login')
+        open("data/entry.psk",'w+').write("pass")
+
+    except KeyError:cprint("Key Interupted, Try again",'red')
+    
+    except OSError as e:
+        cprint(f"Error: {e} occured",'red')
+        notify("Error Occured","Something went wrong that can't be fixed automatically")
+        input("press enter to exit")
         os.system("exit()")
-except Exception as e:
-    print(e)
-    os.system("exit()")
+        break
+
+    except ValueError as e:
+        cprint(f"Value Error Occured: {e}, Try again",'red')
+        input("press enter to exit")
+        break
+
+    except Exception:
+        cprint("Something went wrong, Try again")
+        sleep(1)
+        input("press enter to exit")
+        os.system("exit()")
+        break
+

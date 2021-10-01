@@ -57,15 +57,17 @@ class AESCipher(object):
         return s[:-ord(s[len(s)-1:])]
 
 class KeyProcess:
-	def __init__(self):			
+	def __init__(self):		
 		try:
-			self.path_dir=open("path_dir","r+").read()
-			self.rootb=open("lib\ekey","rb")
-			self.rootw=open("lib\ekey","r+")
-		except FileNotFoundError:
+			self.path_dir=open("data/path_dir","r+").read()
+		except:
+				self.path_dir=open('data/path_dir','w+').read()
+		#self.rootb=open("lib\ekey.psk","rb")
+		#self.rootw=open("lib\.nomedia","r+")
+		#except FileNotFoundError:
 			
-			self.rootw=open("lib\ekey","w+")
-			self.rootb=open("lib\ekey","rb")
+			#self.rootw=open("lib\ekey","w+")
+			#self.rootb=open("lib\ekey","rb")
 
 			#if self.new_raw_password==self.conferm_password:
 			#	new_encrypted_password=AESCipher(self.new_raw_password).encrypt(self.new_raw_password)
@@ -94,14 +96,13 @@ class KeyProcess:
 		return splitted_encrypted_password
 		
 
-	def decrypt_password(self,id,key):
+	def decrypt_password(self,key,path):
 		aes=AESCipher(key)
-		path=open(f"{self.path_dir}\\{id}\\password")
-		#print("path= ",path)
-		#nput()
-		encrypted_password=path.read()#opening encrypted password from root
+		#path=open(f"{self.path_dir}\\{id}\\password")
+		encrypted_password=open(path).read()#opening encrypted password from root
 		decrypted_password=aes.decrypt(encrypted_password)
-		return decrypted_password
+		if decrypted_password!='':return decrypted_password
+		else:return 'Error'
 
 	def reencrypt_password(self,id,password,key):
 		aes=AESCipher(key)
@@ -214,7 +215,7 @@ class Screen:
 				help.help()
 
 			elif user_input=="--list":
-				dirs=os.listdir(open('path_dir','r').read())
+				dirs=os.listdir(open('data/path_dir','r').read())
 				listToStr = ' '.join(map(str, dirs))
 				print(listToStr.replace(' ', '\n'))
 				input()
@@ -231,7 +232,7 @@ class Screen:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
 
-	def ui(self,name,clr="blue",attr='bold'):
+	def ui(self,name,clr="green",attr='bold'):
 		recent1='Screen'
 		recent2="Facebook"
 		recent3="Twitter"
@@ -375,16 +376,33 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 	''')
 
-		if name=='login_screen_top':
+		master_password_screen=(f'''			       _________________________
+______________________________/WELCOME TO PASSLOCK LOGIN\______________________________________________________________
+										{time.process_time_ns()} at {time.ctime()}
+                                                 _______________________________________________________________
+                Welcome Back                    |           ____                  __               __           |
+                                                |          / __ \____ ___________/ /   ____  _____/ /__         |
+        Please Verify it's you                  |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
+    Enter Master password to continue       	|        / ____/ /_/ (__  |__  ) /___/ /_/ / /__/ , <           |
+                                                |       /_/    \___,/____/____/_____/\____/\___/_/|_|           |
+                                                |                                                               |
+                                                |_______________________________________________________________|
+
+	''')
+
+		if name=='login_screen':
 			cprint(login_screen_top,color=clr,attrs=[attr])
 			cprint("\tEnter username ",color=clr,attrs=[attr])
-			username=input("\t\t\t:")
+			username=input("\t\t\t:")								#<<--UPDATE IN NEAR FUTURE
 			cprint("\tEnter secret key",color=clr,attrs=[attr])
-			password=password_input('\t\t\t:')
-			KeyProcess().encrypt_password(password,password)
+			self.private_key=password_input('\t\t\t:')
+			return self.private_key
+
+			#######<<<<FUTURE USERNAME IMPLEMENTATION WILL COME HERE!>>>>#######
 
 
-		elif name=='create_login':		#<-- Work here: add password encryption ann saving
+
+		elif name=='create_login':
 			cprint(create_login,color=clr,attrs=[attr])
 			cprint('\n\tCreate a username',color=clr,attrs=[attr])
 			self.new_username=input("\t\t\t:")
@@ -394,8 +412,18 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			confirm_password=password_input("\t\t\t:")
 			cprint("\tCreate a private key\t\t\t\bNOTE: You can't change private key but can use multiple keys at same time",color=clr,attrs=[attr])
 			self.private_key=password_input("\t\t\t: ")
+			encrypter=KeyProcess()
+
+			#username section
+			os.mkdir('data/users')
+			open(f'data/users/{self.new_username}.psu','w+').write(encrypter.encrypt_password(self.new_username,self.new_username))
+
+			#password section
 			if self.new_password==confirm_password:
-				pass
+				root=open('lib/ekey.psk','w+')
+				encrypt_password=encrypter.encrypt_password(confirm_password,self.new_password)
+				root.write(encrypt_password)
+
 			else:
 				clear()
 				cprint("Passwords doesnt match",'red',attrs=['bold'])
@@ -411,7 +439,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint("Enter Password\t\t\t\t-r to generate random password",color=clr,attrs=[attr])
 			raw_password=password_input('\t\t\t: ')
 			encrypter=KeyProcess()
-			path_dir=open('path_dir','r').read()
+			path_dir=open('data/path_dir','w+').read()
 			try:
 				if '-r' in raw_password or raw_password == '':
 					t=str(raw_password)
@@ -448,6 +476,16 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 			except Exception:cprint("\nSomething went wrong, please try again",'red')
 
+		elif name=='master_password_screen':
+			clear()
+			cprint(master_password_screen,clr,attrs=[attr])
+			cprint('Enter Maser password',clr,attrs=[attr])
+			raw_password = password_input('\t\t\t: ')
+			decrypted_master_password=KeyProcess().decrypt_password(key=raw_password,path='lib\ekey.psk')
+			if decrypted_master_password==raw_password:return 'proceed_to_login_screen'
+			else:
+				cprint("Invalid password\nExiting Application",'red',attrs=['bold'])
+				sleep(1.638)
 
 		elif name=='home_screen':cprint(homescreen,color=clr,attrs=[attr])
 		elif name=='show_screen_failed_middle':cprint(show_screen_failed_middle,color=clr,attrs=[attr])
@@ -459,7 +497,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 if __name__=="__main__":
 	clear()
 	screen=Screen()
-	#screen.ui('login_screen_top')
-	screen.ui("create_login")
+	screen.ui('login_screen')
+	#print(screen.ui("master_password_screen"))
 	#screen.ui('create_new',clr='blue')
 	

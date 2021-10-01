@@ -20,30 +20,35 @@ while True:
 
     try:
         screen=Screen()
-        if 'pass' in open('data/entry.psk','r'):
-            #<-- New Code write here
-            path_dir=open("path_dir",'r')
-            screen.ui("login_screen_top")
-
+        try:
+            entry=open('data/entry.psk','r')
+            path_dir=open('data/path_dir','r')
+        except FileNotFoundError:
+            entry=open('data/entry.psk','w+')
+            path_dir=open('data/path_dir','w+')
+        if 'pass' in entry:
+                                #<-- New Code write here
+            path_dir=open("data/path_dir",'r')
+            if screen.ui('master_password_screen') == 'proceed_to_login_screen':
+                clear()
+                key=screen.ui("login_screen")
+                while True:
+                    clear()
+                    screen.ui('home_screen')
+                    cprint('Enter Input',clr,attrs=['bold'])
+                    input('\t\t\t : ')
+                
+            else:break
         else:
             screen.ui('create_login')
+            cprint("Where do I store passwords?",clr)
+            path=input("Enter path: ")
+            path_dir.write(path)
+            path_dir.close()
+            entry.write('pass')
+            entry.close()
             clear()
-            open('data/entry.psk','w+').write("pass")
-
-    except IOError:
-
-        #IO_PATH_SECTION
-
-        cprint("Where do I store passwords?",clr)
-        path=input("Enter path: ")
-        clear()
-        path_dir=open("path_dir","w")
-        path_dir.write(f"{path}\passlock")
-        path_dir.close()
-        os.mkdir(open("path_dir",'r').read())
-        Screen().ui('create_login')
-        open("data/entry.psk",'w+').write("pass")
-
+            
     except KeyError:cprint("Key Interupted, Try again",'red')
     
     except OSError as e:
@@ -59,7 +64,7 @@ while True:
         break
 
     except Exception:
-        cprint("Something went wrong, Try again")
+        cprint("Something went wrong,Please Try again",'red',attrs=['bold'])
         sleep(1)
         input("press enter to exit")
         os.system("exit()")

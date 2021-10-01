@@ -1,4 +1,4 @@
-<h1 align="center">:closed_lock_with_key:Pass Lock <br>AES-encrypted-password-manager
+<h1 align="center">:closed_lock_with_key:Pass Lock (2.0 Early Access)<br>AES-encrypted-password-manager
  </h1>
 <h3 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h3>
 

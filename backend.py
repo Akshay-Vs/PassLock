@@ -112,6 +112,7 @@ class KeyProcess:
 			clear()
 			typing("Access granded...","cyan")
 			Screen().home_elements()
+			
 
 		else:
 			cprint("Access denied\nExiting Application...","red",attrs=["bold"])
@@ -134,7 +135,8 @@ class KeyProcess:
 		#nput()
 		encrypted_password=path.read()#opening encrypted password from root
 		decrypted_password=aes.decrypt(encrypted_password)
-		return decrypted_password
+		if decrypted_password!='':return decrypted_password
+		else:return "error"
 
 	def reencrypt_password(self,id,password):
 		aes=AESCipher(self.raw_key)

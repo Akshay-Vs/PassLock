@@ -1,6 +1,6 @@
 import sys
 clr='blue'
-for i in range(3):#autofix with 3 iterations
+for i in range(3):
     try:
         import os
         from addons import *
@@ -26,8 +26,8 @@ while True:
         except FileNotFoundError:
             entry=open('data/entry.psk','w+')
             path_dir=open('data/path_dir','w+')
+            
         if 'pass' in entry:
-                                #<-- New Code write here
             path_dir=open("data/path_dir",'r')
             if screen.ui('master_password_screen') == 'proceed_to_login_screen':
                 clear()
@@ -35,8 +35,11 @@ while True:
                 while True:
                     clear()
                     screen.ui('home_screen')
-                    cprint('Enter Input',clr,attrs=['bold'])
-                    input('\t\t\t : ')
+                    cprint('\t\t\bEnter Input',clr,attrs=['bold'])
+                    user_choice=input('\t\t\t : ')
+                    if user_choice =='new':
+                        screen.ui('create_new')
+                    ##########################################################
                 
             else:break
         else:
@@ -55,7 +58,7 @@ while True:
         cprint(f"Error: {e} occured",'red')
         notify("Error Occured","Something went wrong that can't be fixed automatically")
         input("press enter to exit")
-        os.system("exit()")
+        os.exit()
         break
 
     except ValueError as e:

@@ -61,55 +61,29 @@ class KeyProcess:
 		try:
 			self.path_dir=open("data/path_dir","r+").read()
 		except:
-				self.path_dir=open('data/path_dir','w+').read()
-		#self.rootb=open("lib\ekey.psk","rb")
-		#self.rootw=open("lib\.nomedia","r+")
-		#except FileNotFoundError:
-			
-			#self.rootw=open("lib\ekey","w+")
-			#self.rootb=open("lib\ekey","rb")
-
-			#if self.new_raw_password==self.conferm_password:
-			#	new_encrypted_password=AESCipher(self.new_raw_password).encrypt(self.new_raw_password)
-			#
-			#	t=str(new_encrypted_password)
-			#	splited_encrypted_password=(t.split("'")[-2])#splitting encrypted key
-			#	self.rootw.write(splited_encrypted_password)#saving encrypted password
-			#	os.system("exit()")
-			#
-			#		
-			#else:
-			#	self.rootw.close()
-			#	try:os.remove(f"{self.path_dir}lib\\ekey")
-			#	except PermissionError as error:cprint(f"{error}\nplease manually delete empty 'lib/ekey' otherwise it will cause errors","yellow",attrs=["bold"])
-			#	finally:raise ValueError("Passwords doesnt match")#fire value error 
-	
-
-			
-		
+				self.path_dir=open('data/path_dir','w+').read()	
 
 	def encrypt_password(self,raw_password,key):
 		aes=AESCipher(key)
 		raw_encrypted_password=aes.encrypt(raw_password)
 		t=str(raw_encrypted_password)
-		splitted_encrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
+		splitted_encrypted_password=(t.split("'")[-2])
 		return splitted_encrypted_password
 		
 
 	def decrypt_password(self,key,path):
 		aes=AESCipher(key)
-		#path=open(f"{self.path_dir}\\{id}\\password")
-		encrypted_password=open(path).read()#opening encrypted password from root
+		encrypted_password=open(path).read()
 		decrypted_password=aes.decrypt(encrypted_password)
-		if decrypted_password!='':return decrypted_password
-		else:return 'Error'
+		if decrypted_password:return decrypted_password #return if the string is not empty
+		else:return str
 
 	def reencrypt_password(self,id,password,key):
 		aes=AESCipher(key)
 		reencrypted_password=aes.encrypt(password)
 		root=open(f"{self.path_dir}\\{id}\\password",'w')
 		t=str(reencrypted_password)
-		splitted_reencrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
+		splitted_reencrypted_password=(t.split("'")[-2])
 		root.write(splitted_reencrypted_password)
 
 		
@@ -232,16 +206,8 @@ class Screen:
 				cprint("Invalid input","red",attrs=['bold'])
 				sleep(2)
 
-	def ui(self,name,clr="green",attr='bold'):
-		recent1='Screen'
-		recent2="Facebook"
-		recent3="Twitter"
-		recent4="Stack"
-		recent5="System"
-		recent6="Instagram"
-		recent7="GitHub"
-		recent8="IDs"
-		recent9="Linkedin"
+	def ui(self,name,clr="cyan",attr='blink'):
+		recent=[1,2,3,4,5,6,7,8,9]
 		lists="n"
 		status="Done"
 		status1="Error"
@@ -262,31 +228,37 @@ class Screen:
 		path="E:/Passlock/Google/"
 
 				
-		homescreen=(f'''
+		home_screen_top=(f'''
                                     	             _______________________________________________________________
                         Commands                    |           ____                  __               __           |
                                                     |          / __ \____ ___________/ /   ____  _____/ /__         |
                 --help - for further help           |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
                 --Exit - to exit                    |        / ____/ /_/ (__  |__  ) /___/ /_/ / /__/ ,<            |
                                                     |       /_/    \__,_/____/____/_____/\____/\___/_/|_|           |
-                show   - to show saved password     |                                                               |
-                new    - to create a new password   |_______________________________________________________________|
-		path_dir -{os}
+                                                    |                                                               |
+                                                    |_______________________________________________________________|
+		\n\t\t\tpath_dir -{os}
 	_____________________________________________________________________________________________________________
 																													
 		TRs   -True                                       Process Monitor      Recent passwords                    
 		EKEY  -True
-															p1-{status}              {recent1}                      
-		--list  to list password IDs                        p2-{status}              {recent2}                      
-		--r n   to generate n bit password                  p3-{status1}             {recent3}                       
-		--p     to change currrent path_dir                 p4-{status}              {recent4}                      
-		--move  to move passwords                           p5-{status}              {recent5}                     
-		--mkrec to make recovery point                      p6-{status1}             {recent6}                     
-															p7-{status1}             {recent7}                               
-															p8-{status}              {recent8}                                 
-															p9-{status}              {recent9}                      
+                                                            	    p1-{status}              {recent[0]}                      
+		--list  to list password IDs                        p2-{status}              {recent[1]}                      
+		--r n   to generate n bit password                  p3-{status1}             {recent[2]}                       
+		--p     to change currrent path_dir                 p4-{status}              {recent[3]}                      
+		--move  to move passwords                           p5-{status}              {recent[4]}                     
+		--mkrec to make recovery point                      p6-{status1}             {recent[5]}                     
+                                                            	    p7-{status1}             {recent[6]}                               
+                                                            	    p8-{status}              {recent[7]}                                 
+                                                            	    p9-{status}              {recent[8]} ''')                     
 		
+		home_screen_bottom=('''
 	_______________________________________________________________________________________________________________    
+		''')
+
+		home_screen_text=('''
+		\t\t new    - to create a new password
+		\t\t show   - to show saved password
 		''')
 
 
@@ -372,7 +344,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 		{method}           
 	_______________________________________________________________________________________________________________
 
-			Enter Requered Fields To Continue
+			Enter Requered Details
 
 	''')
 
@@ -434,7 +406,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 		elif name=='create_new':
 			cprint(create_new,color=clr,attrs=[attr])
-			cprint("Enter Identification name",color=clr,attrs=[attr])
+			cprint("\t\tEnter Identification name",color=clr,attrs=[attr])
 			id=input('\t\t\t: ')
 			cprint("Enter Password\t\t\t\t-r to generate random password",color=clr,attrs=[attr])
 			raw_password=password_input('\t\t\t: ')
@@ -449,6 +421,10 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					typing(f"\nGenerated Password:{raw_password}",'cyan',typing_speed=len(raw_password)/0.045)
 					os.mkdir(f'{path_dir}/{id}')
 					open(f'{path_dir}/{id}/password.psw','w+').write(encrypted_password)
+					cprint(f'Saving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
+					sleep(0.596)
+					cprint("Done",'yellow')
+					sleep(1.232629)
 					
 
 				else:
@@ -456,6 +432,10 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					print(encrypted_password)
 					os.mkdir(f'{path_dir}/{id}')
 					open(f'{path_dir}/{id}/password.psw','w+').write(encrypted_password)
+					cprint(f'\nSaving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
+					sleep(0.596)
+					cprint("Done",'yellow')
+					sleep(1.232629)
 
 			except FileExistsError:
 				clear()
@@ -465,16 +445,25 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 				id=input('\t\t\t: ')
 				os.mkdir(f'{path_dir}/{id}')
 				open(f'{path_dir}/{id}/password.psw','w+').write(encrypted_password)
-				cprint(f"Saving Done {id} at {path_dir}",'yellow',attrs=['bold'])
+				cprint(f"\nSaving Done {id} at {path_dir}",'yellow',attrs=['bold'])
 				sleep(1.638)
 
 			except ValueError as e:
 				error=str(e)
 				if 'invalid literal' in error:
 					cprint("\nOperation cancelled\nInvalid Literal Found: Entered value doesn't seems correct. Try to enter initializer<space>max_range\n\t\t\teg: -r 20, will generate a 20 bit long password",'red','on_grey',attrs=['bold'])
-				else:cprint("\nSomething went wrong, please try again",'red')
+					cprint('press Enter to continue','yellow')
+					input()
+					
+				else:
+					cprint("\nSomething went wrong, please try again",'red')
+					cprint('press Enter to continue','yellow')
+					input()
 
-			except Exception:cprint("\nSomething went wrong, please try again",'red')
+			except Exception:
+				cprint("\nSomething went wrong, please try again",'red')
+				cprint('press Enter to continue','yellow')
+				input()
 
 		elif name=='master_password_screen':
 			clear()
@@ -487,7 +476,11 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 				cprint("Invalid password\nExiting Application",'red',attrs=['bold'])
 				sleep(1.638)
 
-		elif name=='home_screen':cprint(homescreen,color=clr,attrs=[attr])
+		elif name=='home_screen':
+			cprint(home_screen_top,color=clr,attrs=[attr])
+			cprint(home_screen_text,'yellow',attrs=['bold'])
+			cprint(home_screen_bottom,clr,attrs=[attr])
+
 		elif name=='show_screen_failed_middle':cprint(show_screen_failed_middle,color=clr,attrs=[attr])
 		elif name=='show_screen_failed_top':cprint(show_screen_failed_top,color=clr,attrs=[attr])
 		elif name=='show_screen':cprint(show_screen,color=clr,attrs=[attr])
@@ -496,8 +489,9 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 if __name__=="__main__":
 	clear()
+	input(cprint('Enter input','yellow'))
 	screen=Screen()
-	screen.ui('login_screen')
+	screen.ui('home_screen')
 	#print(screen.ui("master_password_screen"))
 	#screen.ui('create_new',clr='blue')
 	

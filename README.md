@@ -29,7 +29,7 @@ Passlock also has a console user interface that will definitely help to enhance 
  <h2 align='left'><u><b>Installation</b></u></h2>
  <p>Install using git bash 
  <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code>
-  <br>or click <a href="https://github.com/Akshay-Vs/AES-encrypted-password-manager/archive/refs/heads/main.zip">download</a>
+  <br>or click <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/heads/main.zip">download</a>
  
  <h2 align='left'><u><b>Requerments</b></u></h2>
  &bull; PassLock requered python 3.7 and above<br>
@@ -92,4 +92,6 @@ Lisence: MIT Lisence<br>
 &#169; 2021 Akshay Vs
 
  <h2>Things to do</h2>
- - Sorting recent activities
+ - Final Bugs Fixes
+ - Performance optimization
+ - Tests

@@ -59,7 +59,7 @@ Passlock also has a console user interface that will definitely help to enhance 
 
 
 &bull; Developer: Akshay Vs<br>
-<h4 align="left"><b>Connect with me</b></h4>
+<h2 align="left"><b>Connect with me</b></h2>
 <p align="left">
 <a href="https://twitter.com/@Akshayv69128812" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@Akshayv69128812" height="30" width="40" /></a>
 <a href="https://stackoverflow.com/users/akshay-vs" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="akshay-vs" height="30" width="40" /></a>

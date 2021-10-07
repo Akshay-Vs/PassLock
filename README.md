@@ -2,9 +2,22 @@
  </h1>
 <h3 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h3>
 
+
 ______
 
-<pr><br>
+<p align="center">
+ <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=white"/>
+ <img align="center" src="https://badgen.net/github/stars/akshay-vs/aes-encrypted-password-manager?color=white"/>
+ <img align="center" src="https://badgen.net/github/forks/akshay-vs/aes-encrypted-password-manager?color=white"/>
+ <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=white"/>
+ <img align="center" src="https://badgen.net/badge/license/MIT/white"/> <br>
+ <br>
+ <img align="center" src="https://badgen.net/github/checks/node-formidable/node-formidable/master/windows?color=white"/>
+ <img align="center" src="https://badgen.net/badge/python/3.9/white"/>
+ 
+</p>
+
+<pr>
 PassLock is a password manager and password generator that encrypts passwords using AES and save them securely on your local machine.
 The password is encrypted and decrypted with a 32-bit key defined by user and will get updated with each use.
 So extending the length of the master password will steadily improve the overall security and key length.

@@ -31,7 +31,7 @@ Passlock also has a console user interface that will definitely help to enhance 
   &bull;  AES Encryption<br>
   &bull; User defined key<br>
   &bull; Unlimited length random password generator<br>
-  &bull; Auto Copy<br>
+  &bull; Clipboard Copy<br>
   &bull; Custom path<br>
   &bull; Console Animations<br>
   

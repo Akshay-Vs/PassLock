@@ -23,13 +23,13 @@ PassLock is a password manager and password generator that encrypts passwords us
 The password is encrypted and decrypted with a 32-bit key defined by user and will get updated with each use.
 So extending the length of the master password will steadily improve the overall security and key length.
 PassLock also generates a 40-bit long password that contains lowercase, uppercase letters, numbers, and symbols.
-Passlock's 220bit AES encryption and infinitely long password generator make your passwords nearly impossible to break.
+Passlock's 220bit AES encryption and unliminited long password generator make your passwords nearly impossible to break.
 Passlock also has a console user interface that will definitely help to enhance your experience.
 </pr>
 <br>
 
 <h2 align="left"><u><b>Features</b></u></h2>
-  &bull;  AES Encryption<br>
+  &bull; AES Encryption<br>
   &bull; User defined key<br>
   &bull; Unlimited length random password generator<br>
   &bull; Clipboard Copy<br>

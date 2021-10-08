@@ -8,7 +8,7 @@ ______
 <p align="center">
  <img align="center" src="https://badgen.net/badge/license/MIT/white"/>
  <img align="center" src="https://badgen.net/github/stars/akshay-vs/aes-encrypted-password-manager?color=white"/>
- <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=black"/>
+ <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=white"/>
  <img align="center" src="https://badgen.net/github/forks/akshay-vs/aes-encrypted-password-manager?color=white"/>
  <br><br>
  <img align="center" src="https://badgen.net/github/checks/node-formidable/node-formidable/master/windows?color=white"/>

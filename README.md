@@ -5,16 +5,18 @@
 
 ______
 
-<p align="center">
- <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=white"/>
+<p align="center"><u>
+ <img align="center" src="https://badgen.net/badge/license/MIT/white"/>
  <img align="center" src="https://badgen.net/github/stars/akshay-vs/aes-encrypted-password-manager?color=white"/>
+ <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=white"/>
  <img align="center" src="https://badgen.net/github/forks/akshay-vs/aes-encrypted-password-manager?color=white"/>
- <img align="center" src="https://badgen.net/badge/license/MIT/white"/> <br>
- <br>
+ <br><br>
  <img align="center" src="https://badgen.net/github/checks/node-formidable/node-formidable/master/windows?color=white"/>
  <img align="center" src="https://badgen.net/badge/python/3.9/white"/>
  
-</p>
+</u></p>
+
+_____________
 
 <pr>
 PassLock is a password manager and password generator that encrypts passwords using AES and save them securely on your local machine.
@@ -77,9 +79,6 @@ Passlock also has a console user interface that will definitely help to enhance 
 <a href="https://stackoverflow.com/users/akshay-vs" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="akshay-vs" height="30" width="40" /></a>
 <a href="https://instagram.com/__akshay_v5__" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="__akshay_v5__" height="30" width="40" /></a>
 </p>
-
-
-_____________
 
 <h2 align='left'><u><b>Running</b></u></h2>
 &#9724;Extract the Zip file<br>

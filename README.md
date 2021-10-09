@@ -95,6 +95,8 @@ Passlock also has a console user interface that will definitely help to enhance 
 <code>-r    </code>or leaving password blank will generate a random password<br>
 <code>-r 40 </code> initialize random password with key length<br>
 <code>--help</code>help<br>
+<code>--move</code>Move passwords to different folder<br>
+ <code>--p</code>To change path<br>
 <code>--Exit</code>close all files and exit console application<br>
 
 

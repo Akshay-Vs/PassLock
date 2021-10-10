@@ -14,7 +14,6 @@ from Crypto.Cipher import AES
 import pyperclip
 import msvcrt
 import shutil
-from tqdm import tqdm
 password_placeholder='*'
 max_index=50
 
@@ -57,12 +56,7 @@ def password_input(prompt=''):
     sys.stdout.write('\n')
     return p_s
 
-def pbar(max,times,update,delay):
-	load=tqdm(total=max)
-	for i in range(times):
-		time.sleep(delay)
-		load.update(update)
-	load.close()
+
 
 if __name__=="__main__":
     clear()

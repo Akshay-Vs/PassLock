@@ -1,6 +1,9 @@
 from os import remove
+
+from Crypto.Cipher.AES import new
 from addons import *
 clear()
+
 Master_password=str()
 primary_color='cyan'
 class PasswordManager:
@@ -41,10 +44,10 @@ class AESCipher(object):
         raw = self._pad(raw)
         iv = Random.new().read(AES.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        return base64.b64encode(iv + cipher.encrypt(raw.encode()))
+        return base64.b85encode(iv + cipher.encrypt(raw.encode()))
 
     def decrypt(self, enc):
-        enc = base64.b64decode(enc)
+        enc = base64.b85decode(enc)
         iv = enc[:AES.block_size]
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         return self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
@@ -60,20 +63,49 @@ class KeyProcess:
 	def __init__(self):
 		self.path_dir=open("data/path_dir","r").read()
 
-	def encrypt_password(self,raw_password,key):
+	def encrypt_password(self,raw_password,key,path):
+
 		aes=AESCipher(key)
-		raw_encrypted_password=aes.encrypt(raw_password)
-		t=str(raw_encrypted_password)
-		splitted_encrypted_password=(t.split("'")[-2])
-		return splitted_encrypted_password
+		iteration=choice(['6','5','6','7','8','9','10','11','12'])
+
+		encrypted_password=raw_password
+		for i in range(int(iteration)):
+			encrypted_password=aes.encrypt(encrypted_password)
+			encrypted_password=str(encrypted_password)
+			encrypted_password=(encrypted_password.split("'")[-2])
+		
+		encrypted_iteration=aes.encrypt(iteration)
+		encrypted_iteration=str(encrypted_iteration)
+		encrypted_iteration=(encrypted_iteration.split("'")[-2])
+
+		open(f"{path}/itearables",'w+').write(encrypted_iteration)
+		open(f"data/exc.pyc",'w+').write(f'|?~p~;{encrypted_password}|?~p~;')
+
+		compress(['data/exc.pyc'],f'{path}/password.psl',b"passlock")
+		os.remove("data/exc.pyc")
+
+		return encrypted_password
 		
 
 	def decrypt_password(self,key,path):
 		aes=AESCipher(key)
-		encrypted_password=open(path).read()
-		decrypted_password=aes.decrypt(encrypted_password)
+
+		iteration=open(f"{path}/itearables",'r').read()
+		iteration=aes.decrypt(iteration)
+		iteration=int(iteration)
+
+		password=open(f"{path}/password.psl",'rb').read()
+		password=str(password)
+		decrypted_password=(password.split("|?~p~;")[-2])
+		
+
+		for i in range(iteration):
+			decrypted_password=aes.decrypt(decrypted_password)
+			decrypted_password=str(decrypted_password)
+
+
 		if decrypted_password:return decrypted_password #return if the string is not empty
-		else:return '********'
+		return '********'
 
 	def reencrypt_password(self,id,password,key):
 		aes=AESCipher(key)
@@ -507,8 +539,25 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 if __name__=="__main__":
 	clear()
-	screen=Screen()
-	screen.ui('home_screen')
-	#print(screen.ui("master_password_screen"))
-	#screen.ui('create_new',clr='blue')
+	keyprocess=keyprocess()
+	key="Key"
+	password=generate_random_password(11)
+	path="Path"
 	
+	encrypted_password=KeyProcess.encrypt_password(password,key,path)
+	decrypted_password=KeyProcess.decrypt_password(key,path)
+
+	print("\nEncrypted password: ",encrypted_password)
+	print("\nExpected password: ",password)
+	print("\nDecrypted password: ",decrypted_password)
+
+	enc_length=len(encrypted_password)
+	dec_length=len(decrypted_password)
+	added_length=enc_length-dec_length
+	
+	print("\noriginal size: ",dec_length,'bits')
+	print("\nEncrypted sixe: ",enc_length,'bits')
+	print("\nSize gained: ",added_length,'bits')
+
+	if password==decrypted_password:print("\nTest passed!")
+	else:print("\nTest failed")

@@ -50,12 +50,13 @@ while True:
 
                     elif 'show' in user_choice:
                         clear()
-                        splitted_choice=(user_choice.split(" ")[-1])
+                        id_name=user_choice.replace("show ","")
+                        id_name=id_name.replace(" ","_")
                         #print(type(splitted_choice),splitted_choice)
                         #input()
-                        try:screen.ui('show_screen',show=splitted_choice)
+                        try:screen.ui('show_screen',show=id_name)
                         except FileNotFoundError:
-                            if splitted_choice=='show':
+                            if id_name=='show':
                                 cprint('Error: Identification expected','red')
                                 cprint('Please provide Identification name eg: show name','yellow')
                                 cprint('Press Enter to continue',clr)
@@ -94,6 +95,7 @@ while True:
 
                     elif user_choice=='--Exit':
                         screen.ui("end_screen")
+                        notify("You are protected","Thanks for using PassLock")
                         sys.exit()
 
                     else:
@@ -131,6 +133,7 @@ while True:
             notify('report us',"feel free to report this issue")
             break
         sleep(2)
+        
 
     except FileExistsError:
         cprint("File Exist Error occured",'yellow')

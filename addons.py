@@ -69,12 +69,11 @@ def compress(files,archive,password):
         if crc_test is not None:
             print(f"Bad CRC or file headers: {crc_test}")
 
-        info = zf.infolist()
-        print(info) 
+        info = zf.infolist() 
 
         file = info[0]
         with zf.open(file) as f:
-            print(f.read().decode())
+            f.read().decode()
 
 
         #zf.extract(file, "/tmp", pwd=password)

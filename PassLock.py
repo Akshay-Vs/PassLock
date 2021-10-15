@@ -1,5 +1,5 @@
+from hashlib import new
 import sys
-
 clr='blue'
 for i in range(3):
     try:
@@ -50,12 +50,13 @@ while True:
 
                     elif 'show' in user_choice:
                         clear()
-                        #splitted_choice=(user_choice.split(" ")[-1])
-                        splitted_choice=user_choice.replace('show ','')
-                        splitted_choice=splitted_choice.replace(' ',"_")
-                        try:screen.ui('show_screen',show=splitted_choice)
+                        id_name=user_choice.replace("show ","")
+                        id_name=id_name.replace(" ","_")
+                        #print(type(splitted_choice),splitted_choice)
+                        #input()
+                        try:screen.ui('show_screen',show=id_name)
                         except FileNotFoundError:
-                            if splitted_choice=='show':
+                            if id_name=='show':
                                 cprint('Error: Identification expected','red')
                                 cprint('Please provide Identification name eg: show name','yellow')
                                 cprint('Press Enter to continue',clr)
@@ -77,87 +78,24 @@ while True:
                         old_path=open("data/path_dir",'r').read()
                         cprint("\tEnter destination path: ",clr,attrs=['bold'])
                         destination_path=input('\t\t\t: ')
-                        try:
-                            shutil.move(old_path,destination_path)
-                            cprint("\tDo you want to set new path as default?[y/n]: ",clr,attrs=['bold'])
-                            set_default=input('\t\t\t: ')
-                            if set_default == "y" or "Y":
-                                open("path_dir",'w').write(destination_path)
-                                cprint("\tFiles moved successfully",clr,attrs=['bold'])
-                                sleep(1.748)
-                            else:
-                                os.mkdir(path_dir.read())
-                                cprint("\tFiles moved successfully",'yellow',attrs=['bold'])
-                                sleep(1.748)
-
-                        except FileExistsError:
-                            cprint("\tFile already exists",'red',attrs=['bold'])
-                            sleep(2.748)
-
-                        except PermissionError:
-                            cprint("\tPermission Denied",'red',attrs=['bold'])
-                            sleep(2.748)
+                        shutil.move(old_path,destination_path)
+                        cprint("\tDo you want to set new path as default?[y/n]: ",clr,attrs=['bold'])
+                        set_default=input('\t\t\t: ')
+                        if set_default == "y" or "Y":
+                            open("path_dir",'w').write(destination_path)
+                            cprint("Files moved successfully",clr,attrs=['bold'])
+                            sleep(1.748)
+                        else:
+                            os.mkdir(path_dir.read())
+                            cprint("Files moved successfully",'yellow',attrs=['bold'])
+                            sleep(1.748)
 
                     elif user_choice=='--help':
                         help.help()
 
-                    elif user_choice=='--p':
-                        old_path=path_dir.read()
-                        cprint('\tEnter new path',clr,attrs=['bold'])
-                        new_path=input('\t\t\t: ')
-                        try:os.mkdir(f'{new_path}\Passlock')
-                        except FileExistsError:cprint('\n\tskipping...,path alredy used','yellow',attrs=['bold'])
-                        open('data/path_dir','w+').write(f'{new_path}\Passlock')
-                        cprint('\tPath changed successfully',clr,attrs=['bold'])
-                        sleep(1.748)
-
-                    elif "--del" in user_choice:
-                        splitted_choice=(user_choice.split(" ")[-1])
-
-                        if splitted_choice=="--del":
-                            cprint("\n\tArgument expected after command",'red',attrs=['bold'])
-                            cprint("\tPlease provide Identification name of the password after command -eg:--del id_name",'yellow',attrs=['bold'])
-                            cprint('\n\tPress enter to continue',clr,attrs=['bold'])
-                            input()
-                        else:
-                            try:
-                                cprint(f"\tAre you sure to delete {splitted_choice}[y/n]? It can't be restored",'yellow',attrs=['bold'])
-                                proceed=input('\t\t\t: ')
-                                if proceed=='y'or'Y':
-                                    root=open('data/path_dir','r').read()
-                                    print(path_dir.read(),'/',splitted_choice,'/password.psw')
-                                    os.remove(f'{root}\{splitted_choice}\password.psw')
-                                    os.rmdir(f'{root}\{splitted_choice}')
-                                    cprint("\t\nFile deleted successfully",clr,attrs=['bold'])
-                                    sleep(1.748)
-                                elif proceed=='n'or"N":pass
-                                else:cprint('\t⚠ Invalid Input','red',attrs=['bold'])
-
-                            except FileNotFoundError:
-                                cprint(f"\tInvalid file name, {splitted_choice} not found",'red',attrs=['bold'])
-                                input()
-                                sleep(1.748)
-
-                    elif user_choice=='--copy':
-                        cprint("\tEnter new path",clr,attrs=['bold'])
-                        new_path=input('\t\t\t: ')
-                        cprint('\tplease wait...',clr,attrs=['bold'])
-                        try:
-                            os.mkdir(f'{new_path}/Passlock')
-                            shutil.copy(path_dir.read(),f'{new_path}/Passlock')
-                            cprint(f'\tSuccessfully copied files form {old_path} to {new_path}',clr,attrs=['bold'])
-                            
-                        except FileExistsError:
-                            cprint("\tSkipping copy, Cannot replace old passwords\n\tThis folder contains another set of passwords",'red',attrs=['bold'])
-                            sleep(2.748)
-
-                        except PermissionError:
-                            cprint("\tPermission Denied",'red',attrs=['bold'])
-                            sleep(2.748)
-
                     elif user_choice=='--Exit':
-                        clear()
                         screen.ui("end_screen")
+                        notify("You are protected","Thanks for using PassLock")
                         sys.exit()
 
                     else:
@@ -175,7 +113,7 @@ while True:
                     open('data/path_dir','w+').write(f'{path}/Passlock')
                     os.mkdir(f'{path}/Passlock')
                 except FileExistsError as e:
-                    cprint(f'{e}; Skipping...,path exists','yellow')
+                    cprint(f'{e}; Skipping path exists','yellow')
             clear()
             path_dir.close()
             screen.ui('create_login')
@@ -195,6 +133,7 @@ while True:
             notify('report us',"feel free to report this issue")
             break
         sleep(2)
+        
 
     except FileExistsError:
         cprint("File Exist Error occured",'yellow')

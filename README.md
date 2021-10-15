@@ -24,7 +24,7 @@ The password is encrypted and decrypted with a 32-bit key defined by user and wi
 So extending the length of the master password will steadily improve the overall security and key length.
 PassLock also generates a 40-bit long password that contains lowercase, uppercase letters, numbers, and symbols.
 Passlock's 220bit AES encryption and infinitely long password generator make your passwords nearly impossible to break.
-Passlock also has a console user interface that will definitely help to enhance your experience.
+Passlock's Console Based User Interface will definitely help to enhance your experience.
 </pr>
 <br>
 <br>

@@ -33,11 +33,13 @@ Passlock also has a console user interface that will definitely help to enhance 
 <br>
 <h2 align="left"><u><b>Features</b></u></h2>
   &bull;  AES Encryption<br>
-  &bull; User defined key<br>
-  &bull; Unlimited length random password generator<br>
+  &bull; Custom key<br>
+  &bull; Random encryption type
+  &bull; random password generator<br>
   &bull; Clipboard Copy<br>
   &bull; Custom path<br>
-  &bull; Console Animations<br>
+  &bull; Terminal User Interface<br>
+  &bull; Process Monitor
   
  <h2 align='left'><u><b>Language</b></u></h2>
  &bull; python3

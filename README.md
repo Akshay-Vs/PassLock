@@ -1,3 +1,4 @@
+<img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/PassLock2.0-Development/resources/images/f.5.png"/>
 <h1 align="center">:closed_lock_with_key:Pass-Lock <br>AES-encrypted-password-manager
  </h1>
 <h3 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h3>

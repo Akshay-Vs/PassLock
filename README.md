@@ -64,7 +64,9 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 | pyperclip  | 1.8+             |
 
 <h2 align='left'><u><b>Development</b></u></h2>
-&bull; Version 1.6.2<br>
+
+&bull; Version 2.0f2<br>
+&bull; Last stable release <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/tags/v1.6.zip">1.9.6</a>  
 &bull; Major Update History:
 <tab>
 

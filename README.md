@@ -27,7 +27,10 @@ Passlock's 220bit AES encryption and infinitely long password generator make you
 Passlock also has a console user interface that will definitely help to enhance your experience.
 </pr>
 <br>
+<br>
 
+<img align="center" src="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/blob/PassLock2.0-Development/resources/images/Screenshot-1.png"/>
+<br>
 <h2 align="left"><u><b>Features</b></u></h2>
   &bull;  AES Encryption<br>
   &bull; User defined key<br>

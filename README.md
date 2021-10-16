@@ -200,11 +200,11 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <a href="https://instagram.com/__akshay_v5__" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="__akshay_v5__" height="30" width="40" /></a>
 </p>
 
-<h2 align='left'><u><b>Running</b></u></h2>
-&#9724;Extract the Zip file<br>
+<h2 align='left'><u><b>How to use?</b></u></h2>
+&#9724;Download and Extract the Zip file<br>
 &#9724;Run PassLock to open Password manager<br>
-&#9724;Enter path of a directory to save encrypted password (Recomended: Create a seperate directory to save password)<i> eg: D:\AES-Ecrypted-Password-Manager\data</i><br>
-&#9724;Create a master password
+&#9724;Enter path to a directory to save passwords<br>
+&#9724;Create a master password, Username and key to open passlock home screeen
 
 
 <h2 align='left'><u><b>Commands</b></u></h2>

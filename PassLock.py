@@ -17,7 +17,7 @@ for i in range(3):
             os.system('pip3 install pyperclip')
         if 'Crypto' not in sys.modules:
             os.system('pip3 install Crypto')
-            os.system('pip3 install pycrypto')
+            #os.system('pip3 install pycrypto')
 
 while True:
 
@@ -50,12 +50,13 @@ while True:
 
                     elif 'show' in user_choice:
                         clear()
-                        splitted_choice=(user_choice.split(" ")[-1])
+                        id_name=user_choice.replace("show ","")
+                        id_name=id_name.replace(" ","_")
                         #print(type(splitted_choice),splitted_choice)
                         #input()
-                        try:screen.ui('show_screen',show=splitted_choice)
+                        try:screen.ui('show_screen',show=id_name)
                         except FileNotFoundError:
-                            if splitted_choice=='show':
+                            if id_name=='show':
                                 cprint('Error: Identification expected','red')
                                 cprint('Please provide Identification name eg: show name','yellow')
                                 cprint('Press Enter to continue',clr)
@@ -72,6 +73,10 @@ while True:
                         cprint('\n\n\t\t\t\tList of saved passwords\n',clr,attrs=['bold'])
                         for x in dirs:cprint(f'\t\t\t\t\t{x}',clr,attrs=['bold'])
                         input()
+
+                    elif user_choice=="--mkrec":
+                        cprint("Sorry, This feature is not available at the moment",'red',attrs=['bold'])
+                        sleep(1.748)
 
                     elif user_choice=="--move":
                         old_path=open("data/path_dir",'r').read()
@@ -94,6 +99,7 @@ while True:
 
                     elif user_choice=='--Exit':
                         screen.ui("end_screen")
+                        notify("You are protected","Thanks for using PassLock")
                         sys.exit()
 
                     else:
@@ -131,6 +137,7 @@ while True:
             notify('report us',"feel free to report this issue")
             break
         sleep(2)
+        
 
     except FileExistsError:
         cprint("File Exist Error occured",'yellow')

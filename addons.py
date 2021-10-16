@@ -1,5 +1,4 @@
 import string
-import random
 try:import posix as os
 except:import os
 import sys
@@ -14,7 +13,8 @@ from Crypto.Cipher import AES
 import pyperclip
 import msvcrt
 import shutil
-from tqdm import tqdm
+import zipfile
+
 password_placeholder='*'
 max_index=50
 
@@ -57,12 +57,26 @@ def password_input(prompt=''):
     sys.stdout.write('\n')
     return p_s
 
-def pbar(max,times,update,delay):
-	load=tqdm(total=max)
-	for i in range(times):
-		time.sleep(delay)
-		load.update(update)
-	load.close()
+def compress(files,archive,password):
+    with zipfile.ZipFile(archive, "w") as zf:
+        for file in files:
+            zf.write(file)
+
+        zf.setpassword(password)
+
+    with zipfile.ZipFile(archive, "r") as zf:
+        crc_test = zf.testzip()
+        if crc_test is not None:
+            print(f"Bad CRC or file headers: {crc_test}")
+
+        info = zf.infolist() 
+
+        file = info[0]
+        with zf.open(file) as f:
+            f.read().decode()
+
+
+        #zf.extract(file, "/tmp", pwd=password)
 
 if __name__=="__main__":
     clear()

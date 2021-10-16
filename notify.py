@@ -7,7 +7,7 @@ import time
 import requests
 
 class notify:
-    def __init__(self, title, msg,t=10):
+    def __init__(self, title, msg,t=1):
         message_map = {
                 win32con.WM_DESTROY: self.OnDestroy,
         }
@@ -35,7 +35,8 @@ class notify:
         Shell_NotifyIcon(NIM_MODIFY, \
                          (self.hwnd, 0, NIF_INFO, win32con.WM_USER+20,\
                           hicon, "Python",msg,200,title))
-        time.sleep(t)
+        if t>5:
+            time.sleep(t)
         DestroyWindow(self.hwnd)
     def OnDestroy(self, hwnd, msg, wparam, lparam):
         nid = (self.hwnd, 0)

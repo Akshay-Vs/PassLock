@@ -3,33 +3,6 @@ from addons import *
 clear()
 Master_password=str()
 primary_color='cyan'
-class PasswordManager:
-
-	def __init__(self,id_name,password):
-		self.id_name=id_name
-		self.password=password
-		
-	def take_password(self):
-		path_dir=open("path_dir","r+").read()
-		path = f"{path_dir}\{self.id_name}"#path
-
-		try:
-			os.mkdir(path)
-			typing("Encrypting...   ");sleep(.5)
-			print(f"\nsaving done {path}");sleep(1)
-		except Exception as error:
-			cprint("Failed to create directory","red")
-			cprint(f"could'nt find {path_dir}","yellow")
-			print(f"\n{error}")
-
-		#encryption and saving input passwords
-		
-		try:
-			root=open(f"{path}\\password","w+")
-			root.write(KeyProcess().encrypt_password(self.password))
-		except Exception as e:
-			print("Unable to save password\n",e)
-			input()
 
 class AESCipher(object):
 
@@ -41,10 +14,10 @@ class AESCipher(object):
         raw = self._pad(raw)
         iv = Random.new().read(AES.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        return base64.b64encode(iv + cipher.encrypt(raw.encode()))
+        return base64.b85encode(iv + cipher.encrypt(raw.encode()))
 
     def decrypt(self, enc):
-        enc = base64.b64decode(enc)
+        enc = base64.b85decode(enc)
         iv = enc[:AES.block_size]
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         return self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
@@ -60,20 +33,62 @@ class KeyProcess:
 	def __init__(self):
 		self.path_dir=open("data/path_dir","r").read()
 
-	def encrypt_password(self,raw_password,key):
+	def encrypt(self,raw_password,key):
 		aes=AESCipher(key)
 		raw_encrypted_password=aes.encrypt(raw_password)
 		t=str(raw_encrypted_password)
-		splitted_encrypted_password=(t.split("'")[-2])
+		splitted_encrypted_password=(t.split("'")[-2])#splitting raw_encrypted_password
 		return splitted_encrypted_password
+
+	def decrypt(self,key,path):
+		aes=AESCipher(key)
+		path=open(path,'r')
+		encrypted_password=path.read()#opening encrypted password from root
+		decrypted_password=aes.decrypt(encrypted_password)
+		if decrypted_password:return decrypted_password #return if the string is not empty
+		return '********'
+
+	def encrypt_password(self,raw_password,key,path):
+
+		aes=AESCipher(key)
+		iteration=choice(['6','5','6','7','8','9','10'])
+
+		encrypted_password=raw_password
+		for i in range(int(iteration)):
+			encrypted_password=aes.encrypt(encrypted_password)
+			encrypted_password=str(encrypted_password)
+			encrypted_password=(encrypted_password.split("'")[-2])
+		
+		encrypted_iteration=aes.encrypt(iteration)
+		encrypted_iteration=str(encrypted_iteration)
+		encrypted_iteration=(encrypted_iteration.split("'")[-2])
+
+		open(f"{path}/itearables",'w+').write(encrypted_iteration)
+		open(f"data/exc.pyc",'w+').write(f'|?~p~;{encrypted_password}|?~p~;')
+
+		compress(['data/exc.pyc'],f'{path}/password.psl',b"passlock")
+		os.remove("data/exc.pyc")
+
+		return encrypted_password
 		
 
 	def decrypt_password(self,key,path):
-		aes=AESCipher(key)
-		encrypted_password=open(path).read()
-		decrypted_password=aes.decrypt(encrypted_password)
-		if decrypted_password:return decrypted_password #return if the string is not empty
-		else:return '********'
+		try:
+			aes=AESCipher(key)
+			iteration=open(f"{path}/itearables",'r').read()
+			iteration=aes.decrypt(iteration)
+			iteration=int(iteration)
+			password=open(f"{path}/password.psl",'rb').read()
+			password=str(password)
+			decrypted_password=(password.split("|?~p~;")[-2])	
+
+			for i in range(iteration):
+				decrypted_password=aes.decrypt(decrypted_password)
+				decrypted_password=str(decrypted_password)
+
+			if decrypted_password:return decrypted_password #return if the string is not empty
+			return '********'
+		except ValueError:return '********'
 
 	def reencrypt_password(self,id,password,key):
 		aes=AESCipher(key)
@@ -88,119 +103,8 @@ class KeyProcess:
 class Screen:
 
 	def __init__(self) -> None:
+		#self.path=open('data/path_dir','r').read()
 		pass
-
-	def home_elements(self):
-
-		while True:
-			clear()
-			cprint("\tWelcome To PassLock\n\n--help  for help\n--Exit to exit console\n","green",attrs=["bold"])
-			cprint("new  - create new passwords\nshow - show currently saved pasword\n","green",attrs=["bold","blink"])
-			user_input=input("Enter input: ")
-
-			if user_input == "--p":
-				old_path=open("path_dir","r").read()
-				self.new_path=input("Enter new path: ")
-				path_dir=open("path_dir","w")
-				path_dir.write(self.new_path)
-				path_dir.close()
-				cprint("Path updated","yellow")
-				
-
-			if user_input=="--Exit":
-				clear()
-				typing("\tThanks for using",'cyan',typing_speed=40)
-				pyperclip.copy("Your passwords are protected by passlock")
-				notify("Your Passwords are protected","Hold on, We are verifiying your passwords once again\nThanks For Using PassLock")
-				clear()
-				sleep(0.739)
-				os.system("exit()")
-				break
-
-			elif user_input=="new":
-				id=input("Create an identification name: ")
-				mgr_input_password=input(f"Enter {id} password: ")
-				if '-r' in mgr_input_password or mgr_input_password=='':
-					splited_input=mgr_input_password.split()
-					try:value = int(splited_input[1])
-					except:
-						cprint("Invalid input, Excepted a number after -r. eg: -r 40")
-						input("press enter to continue")
-					mgr_input_password=generate_random_password(value)
-					cprint(f"Generated password: {mgr_input_password}")
-					sleep(1)
-				elif mgr_input_password=="":
-					mgr_input_password=generate_random_password(40)
-					cprint(f"Generated password: {mgr_input_password}")
-
-				manager=PasswordManager(id,mgr_input_password)
-				manager.take_password()
-				sleep(1.792)
-
-
-
-			elif user_input=="show":
-				id=input("Enter identification name: ")
-				decrypter=KeyProcess()
-				try:
-					decrypted_final_password=decrypter.decrypt_password(id)
-					typing("Decrypting...  ","cyan")
-					clear()
-					if decrypted_final_password !='':
-						cprint(f'Name: {id}\nPassword: {decrypted_final_password}\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
-					elif decrypted_final_password=='':
-						cprint(f'Name: {id}\nPassword: *******\nYour passwords are kept safe\nTry to enter the correct 	\n\n\tpress enter to continue, -c to copy',"cyan",attrs=['bold'])
-					c=input()
-					decrypter.reencrypt_password(id,decrypted_final_password)
-					if c=="-c":
-						if decrypted_final_password !='':
-							pyperclip.copy(decrypted_final_password)
-						elif decrypted_final_password=='':
-							pyperclip.copy("You are using PassLock")
-				except FileNotFoundError:
-					clear()
-					typing("searching...",'cyan',60);sleep(1)
-					clear()
-					cprint("INVALID IDENTIFICATION NAME","red",attrs=["bold"])
-					cprint(f"couldn't find {id}",'yellow',attrs=['bold']);sleep(3)
-
-			elif user_input=="--del":
-				id_name=input("Enter identification name: ")
-				ver=input(f"Are you sure to delete {id_name}?[y/n]: ")
-				if ver=="y":
-					try:
-						os.remove(f"{KeyProcess().path_dir}\\{id_name}\\password")
-						os.rmdir(f"{KeyProcess().path_dir}\\{id_name}")
-						cprint(f"Successfully deleted {id_name}",'yellow')
-						sleep(1.7)
-					except OSError as e:
-						cprint(f"No Such directory {e}",'red')
-						sleep(1.7)
-				else:
-					cprint('Skipping process','yellow')
-					sleep(1.7)
-				
-			elif user_input=="--help":
-				import help
-				help.help()
-
-			elif user_input=="--list":
-				dirs=os.listdir(open('data/path_dir','r').read())
-				listToStr = ' '.join(map(str, dirs))
-				print(listToStr.replace(' ', '\n'))
-				input()
-
-			elif user_input=="--move":
-				old_path=open("path_dir",'r').read()
-				destination_path=input("Enter destination path: ")
-				shutil.move(old_path,destination_path)
-				set_default=input("Do you want to set new path as default?[y/n]: ")
-				if set_default == "y" or "Y":open("path_dir",'w').write(destination_path)
-				else:cprint("Files moved successfully")
-				
-			else:
-				cprint("Invalid input","red",attrs=['bold'])
-				sleep(2)
 
 	def ui(self,name,clr=primary_color,attr='blink',show=None):
 	
@@ -212,12 +116,12 @@ class Screen:
 		
 		status="Done"
 		status1="Error"
-		encryption_state="Success\t  "
+		self.encryption_state="Success\t  "
 		method="AES124"
 		last_view=''
 		created_date=""
 		generation_type="Random"
-		bitrate='69'
+		self.bitrate=None
 		encoder='Built-in AES124'
 		success_preview=2
 		failed_preview=0
@@ -231,7 +135,7 @@ class Screen:
                                     	             _______________________________________________________________
                                                     |           ____                  __               __           |
                                                     |          / __ \____ ___________/ /   ____  _____/ /__         |
-                --help - for further help           |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
+                --help - to get help                |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
                 --Exit - to exit                    |        / ____/ /_/ (__  |__  ) /___/ /_/ / /__/ ,<            |
                                                     |       /_/    \__,_/____/____/_____/\____/\___/_/|_|           |
                                                     |                                                               |
@@ -264,35 +168,15 @@ class Screen:
 		################################################################################################################################
 
 
-		show_screen=(f'''
+		def show_screen():
+			return f'''
 
-        {encryption_state}  |  Last View   : {last_view   }  |  Password Type : {generation_type}   |   Success Previews: {success_preview}   | BitRate: {bitrate}
+        {self.encryption_state}  |  Last View   : {last_view   }  |  Password Type : {generation_type}   |   Success Previews: {success_preview}   | Total Bits : {self.bitrate}
         {method}      |  Created Date: {created_date}  |  Encoder :{encoder } |   Failed Previews : {failed_preview}
 	_______________________________________________________________________________________________________________
 
 
-		''')
-
-		##############################################################################################################################################
-
-		show_screen_failed_top=(f'''
-		Identification Name: {id_name}
-		Encrypted Password : {encrypted_password}
-		Saved Path         : "path" #implement later
-		Decrypted Password : *********
-	''')
-		show_screen_failed_middle=(f'''
-         ______________
-     ___/Preview failed\___________________________________________________________________________________________________
-	|                                                                                                                      |
-	|  Invalid_Key: Entered key doesn't seems right. So we safely reencrypted it. To recover, Restart Passlock with right  |
-	|  key.                                                                                                                |
-	|                                                                                                                      |
-	|      Preview state: Failed         |   Preview Time  : {time.ctime()}                                      |
-	|      Key state    : Invalid        |   Total Failures: {failed_preview}                                                             |
-	|______________________________________________________________________________________________________________________|
-
-		''')
+		'''
 
 		###############################################################################################################################################
 
@@ -331,7 +215,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 		create_new=(f'''
 
-		{encryption_state}  |  Password Type : {generation_type}  |  Created Date: {created_date}  |  Encoder :{encoder }
+		{self.encryption_state}  |  Password Type : {generation_type}  |  Created Date: {created_date}  |  Encoder :{encoder }
 		{method}           
 	_______________________________________________________________________________________________________________
 
@@ -381,13 +265,13 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			try:os.mkdir('data/users')
 			except FileExistsError:pass
 			username=open(f'data/users/{self.new_username}.psu','w+')
-			username.write(encrypter.encrypt_password(self.new_username,self.new_username))
+			username.write(encrypter.encrypt(self.new_username,self.new_username))
 			username.close()
 
 			#password section
 			if self.new_password==confirm_password:
 				root=open('lib/ekey.psk','w+')
-				encrypt_password=encrypter.encrypt_password(confirm_password,self.new_password)
+				encrypt_password=encrypter.encrypt(confirm_password,self.new_password)
 				root.write(encrypt_password)
 
 			else:
@@ -402,22 +286,29 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(create_new,color=clr,attrs=[attr])
 			cprint("\t\tEnter Identification name",color=clr,attrs=[attr])
 			id=input('\t\t\t: ')
-			cprint("Enter Password\t\t\t\t-r to generate random password",color=clr,attrs=[attr])
-			password=password_input('\t\t\t: ')
-			raw_password=password.replace(" ","_")
+			id=id.replace(" ","_")
+			cprint("Enter Password (-r n to generate random password)",color=clr,attrs=[attr])
+			raw_password=password_input('\t\t\t: ')
 			encrypter=KeyProcess()
 			path_dir=open('data/path_dir','r').read()
+			path=f'{path_dir}/{id}'
+			os.mkdir(path)
+			
+			#print(path)
+
 			try:
 				if '-r' in raw_password or raw_password == '':
 					t=str(raw_password)
 					r=(t.split(" ")[-1])
+
 					if r =='-r':raw_password=generate_random_password()
 					else:raw_password=generate_random_password(int(r))
+					
+
 					typing(f"\nGenerated Password:{raw_password}\n",'cyan',typing_speed=len(raw_password)/0.045)
-					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key)
-					cprint(f"Encrypted password: {encrypted_password}")
-					os.mkdir(f'{path_dir}/{id}')
-					open(f'{path_dir}/{id}/password.psw','w+').write(encrypted_password)
+					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key,path)
+					cprint(f"Encrypted password: {encrypted_password}",clr,attrs=[attr])
+		
 					cprint(f'Saving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
 					sleep(0.596)
 					cprint("Done",'yellow')
@@ -425,10 +316,8 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					
 
 				else:
-					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key)
+					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key,path)
 					cprint(f'Encrypted password: {encrypted_password}')
-					os.mkdir(f'{path_dir}/{id}')
-					open(f'{path_dir}/{id}/password.psw','w+').write(encrypted_password)
 					cprint(f'\nSaving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
 					sleep(0.596)
 					cprint("Done",'yellow')
@@ -440,8 +329,8 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 				cprint('ID Exists: Entered id alredy exixts. Please enter another id','red',attrs=[attr])
 				cprint("Enter identification name",clr,attrs=[attr])
 				id=input('\t\t\t: ')
-				os.mkdir(f'{path_dir}/{id}')
-				open(f'{path_dir}/{id}/password.psw','w+').write(encrypted_password)
+				path=f'{path_dir}/{id}'
+				encrypter.encrypt_password(raw_password,self.private_key,path)
 				cprint(f"\nSaving Done {id} at {path_dir}",'yellow',attrs=['bold'])
 				sleep(1.638)
 
@@ -467,7 +356,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(master_password_screen,clr,attrs=[attr])
 			cprint('Enter Maser password',clr,attrs=[attr])
 			raw_password = password_input('\t\t\t: ')
-			decrypted_master_password=KeyProcess().decrypt_password(key=raw_password,path='lib\ekey.psk')
+			decrypted_master_password=KeyProcess().decrypt(raw_password,'lib\ekey.psk')
 			if decrypted_master_password==raw_password:return 'proceed_to_login_screen'
 			else:
 				cprint("Invalid password\nExiting Application",'red',attrs=['bold'])
@@ -479,36 +368,72 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(home_screen_text,'yellow',attrs=['bold'])
 			cprint(home_screen_bottom,clr,attrs=[attr])
 
-		elif name=='show_screen_failed_top':cprint(show_screen_failed_top,color=clr,attrs=[attr])
-
-		elif name=='show_screen':				#  <--Something went wrong here
-			cprint(show_screen,color=clr,attrs=[attr])
-			cprint(f'Identification Name: {show}',clr,attrs=[attr])
+		elif name=='show_screen':
+			
 			path_dir=open('data/path_dir','r').read()
-			raw_encrypted_password=open(f'{path_dir}/{show}/password.psw','r').read()
-			decrypted_password=KeyProcess().decrypt_password(path=f'{path_dir}/{show}/password.psw',key=self.private_key)
-			cprint(f'\nEncrypted Password : {raw_encrypted_password}\n',clr,attrs=[attr])
-			cprint(f'Saved path         : {path_dir}/{show}\n',clr,attrs=[attr])
+			path=f'{path_dir}/{show}'
+			decrypted_password=KeyProcess().decrypt_password(self.private_key,path)
+			raw_encrypted_password=open(f'{path}/password.psl','rb').read()
+			raw_encrypted_password=str(raw_encrypted_password)
 
-			if not decrypted_password:
-				cprint(show_screen_failed_middle,color=clr,attrs=[attr])
+			if decrypted_password == "********":
+				self.encryption_state="Failed    "
+				try:notify('Invalid Key',"Entered secret key doesn't seems correct. Restart passlock with right key")
+				except:pass
+			
+			self.bitrate=len(raw_encrypted_password)
+			raw_encrypted_password=(raw_encrypted_password.split("|?~p~;")[-2])
 
+			cprint(show_screen(),color=clr,attrs=[attr])
+			cprint(f'\tIdentification Name: {show}',clr,attrs=[attr])
 
+			cprint(f'\n\tEncrypted Password : {raw_encrypted_password}\n',clr,attrs=[attr])
+			cprint(f'\tSaved path         : {path_dir}/{show}\n',clr,attrs=[attr])
+			cprint(f"\tDecrypted Password : {decrypted_password}\n",clr,attrs=[attr])
+			cprint("\t-c to copy password to clipboard\n\t-edit to edit password",clr,attrs=[attr])
+			KeyProcess().encrypt_password(decrypted_password,self.private_key,path)
+			_choice=input('\t\t\t')
+			if _choice=='-c':pyperclip.copy(decrypted_password)
+
+			elif _choice=='-edit' and decrypted_password!="********":
+				cprint("\n\tEnter new password (-r n to generate random password)",clr,attrs=[attr])
+				new_password=input("\t\t\t: ")
+				cprint("\tEnter Master password",clr,attrs=[attr])
+				raw_password = password_input('\t\t\t: ')
+				decrypted_master_password=KeyProcess().decrypt(raw_password,'lib\ekey.psk')
+
+				if '-r' in new_password:
+					t=str(new_password)
+					r=(t.split(" ")[-1])
+
+					if r =='-r':new_password=generate_random_password()
+					else:new_password=generate_random_password(int(r))
+					typing(f"\nGenerated Password:{new_password}\n",'cyan',typing_speed=len(new_password)/0.045)
+					KeyProcess().encrypt_password(new_password,self.private_key,path)
+					cprint("\tWriting new password...",clr,attrs=[attr])
+					sleep(1.748)
+
+				else:
+					if decrypted_master_password==raw_password:
+						KeyProcess().encrypt_password(new_password,self.private_key,path)
+						cprint("\tWriting new password...",clr,attrs=[attr])
+						sleep(1.748)
+					else:
+						cprint("\tSkipping...\n\tInvalid Password",'red',attrs=[attr])
+						sleep(1.748)
 			else:
-				cprint(f"Decrypted Password : {decrypted_password}\n",clr,attrs=[attr])
-				cprint("-c to copy password to clipboard\n",clr,attrs=[attr])
-				_choice=input()
-				if _choice=='-c':pyperclip.copy(decrypted_password)
+				cprint("\tAccess denied",'red',attrs=[attr])
+				sleep(1.748)
 
 		elif name=='end_screen':
+			clear()
 			cprint(end_screen,clr,attrs=[attr])
 			
 
 
 if __name__=="__main__":
 	clear()
-	screen=Screen()
-	screen.ui('home_screen')
-	#print(screen.ui("master_password_screen"))
-	#screen.ui('create_new',clr='blue')
-	
+	aes=AESCipher('key')
+	byt=aes.encrypt("password")
+	print(byt)
+	print(aes.decrypt(byt))

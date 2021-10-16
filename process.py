@@ -51,7 +51,7 @@ class KeyProcess:
 	def encrypt_password(self,raw_password,key,path):
 
 		aes=AESCipher(key)
-		iteration=choice(['6','5','6','7','8','9','10','11','12'])
+		iteration=choice(['6','5','6','7','8','9','10'])
 
 		encrypted_password=raw_password
 		for i in range(int(iteration)):
@@ -135,7 +135,7 @@ class Screen:
                                     	             _______________________________________________________________
                                                     |           ____                  __               __           |
                                                     |          / __ \____ ___________/ /   ____  _____/ /__         |
-                --help - for further help           |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
+                --help - to get help                |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
                 --Exit - to exit                    |        / ____/ /_/ (__  |__  ) /___/ /_/ / /__/ ,<            |
                                                     |       /_/    \__,_/____/____/_____/\____/\___/_/|_|           |
                                                     |                                                               |
@@ -171,7 +171,7 @@ class Screen:
 		def show_screen():
 			return f'''
 
-        {self.encryption_state}  |  Last View   : {last_view   }  |  Password Type : {generation_type}   |   Success Previews: {success_preview}   | BitRate: {self.bitrate}
+        {self.encryption_state}  |  Last View   : {last_view   }  |  Password Type : {generation_type}   |   Success Previews: {success_preview}   | Total Bits : {self.bitrate}
         {method}      |  Created Date: {created_date}  |  Encoder :{encoder } |   Failed Previews : {failed_preview}
 	_______________________________________________________________________________________________________________
 
@@ -287,14 +287,14 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint("\t\tEnter Identification name",color=clr,attrs=[attr])
 			id=input('\t\t\t: ')
 			id=id.replace(" ","_")
-			cprint("Enter Password\t\t\t\t-r to generate random password",color=clr,attrs=[attr])
+			cprint("Enter Password (-r n to generate random password)",color=clr,attrs=[attr])
 			raw_password=password_input('\t\t\t: ')
 			encrypter=KeyProcess()
 			path_dir=open('data/path_dir','r').read()
 			path=f'{path_dir}/{id}'
 			os.mkdir(path)
 			
-			print(path)################################<<<<<<<<<<----------------
+			#print(path)
 
 			try:
 				if '-r' in raw_password or raw_password == '':
@@ -307,7 +307,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 					typing(f"\nGenerated Password:{raw_password}\n",'cyan',typing_speed=len(raw_password)/0.045)
 					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key,path)
-					cprint(f"Encrypted password: {encrypted_password}")
+					cprint(f"Encrypted password: {encrypted_password}",clr,attrs=[attr])
 		
 					cprint(f'Saving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
 					sleep(0.596)
@@ -368,7 +368,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(home_screen_text,'yellow',attrs=['bold'])
 			cprint(home_screen_bottom,clr,attrs=[attr])
 
-		elif name=='show_screen':	
+		elif name=='show_screen':
 			
 			path_dir=open('data/path_dir','r').read()
 			path=f'{path_dir}/{show}'
@@ -390,9 +390,40 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(f'\n\tEncrypted Password : {raw_encrypted_password}\n',clr,attrs=[attr])
 			cprint(f'\tSaved path         : {path_dir}/{show}\n',clr,attrs=[attr])
 			cprint(f"\tDecrypted Password : {decrypted_password}\n",clr,attrs=[attr])
-			cprint("\t-c to copy password to clipboard\n",clr,attrs=[attr])
+			cprint("\t-c to copy password to clipboard\n\t-edit to edit password",clr,attrs=[attr])
+			KeyProcess().encrypt_password(decrypted_password,self.private_key,path)
 			_choice=input('\t\t\t')
 			if _choice=='-c':pyperclip.copy(decrypted_password)
+
+			elif _choice=='-edit' and decrypted_password!="********":
+				cprint("\n\tEnter new password (-r n to generate random password)",clr,attrs=[attr])
+				new_password=input("\t\t\t: ")
+				cprint("\tEnter Master password",clr,attrs=[attr])
+				raw_password = password_input('\t\t\t: ')
+				decrypted_master_password=KeyProcess().decrypt(raw_password,'lib\ekey.psk')
+
+				if '-r' in new_password:
+					t=str(new_password)
+					r=(t.split(" ")[-1])
+
+					if r =='-r':new_password=generate_random_password()
+					else:new_password=generate_random_password(int(r))
+					typing(f"\nGenerated Password:{new_password}\n",'cyan',typing_speed=len(new_password)/0.045)
+					KeyProcess().encrypt_password(new_password,self.private_key,path)
+					cprint("\tWriting new password...",clr,attrs=[attr])
+					sleep(1.748)
+
+				else:
+					if decrypted_master_password==raw_password:
+						KeyProcess().encrypt_password(new_password,self.private_key,path)
+						cprint("\tWriting new password...",clr,attrs=[attr])
+						sleep(1.748)
+					else:
+						cprint("\tSkipping...\n\tInvalid Password",'red',attrs=[attr])
+						sleep(1.748)
+			else:
+				cprint("\tAccess denied",'red',attrs=[attr])
+				sleep(1.748)
 
 		elif name=='end_screen':
 			clear()

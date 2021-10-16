@@ -17,7 +17,6 @@ for i in range(3):
             os.system('pip3 install pyperclip')
         if 'Crypto' not in sys.modules:
             os.system('pip3 install Crypto')
-            os.system('pip3 install pycrypto')
 
 while True:
 
@@ -52,8 +51,6 @@ while True:
                         clear()
                         id_name=user_choice.replace("show ","")
                         id_name=id_name.replace(" ","_")
-                        #print(type(splitted_choice),splitted_choice)
-                        #input()
                         try:screen.ui('show_screen',show=id_name)
                         except FileNotFoundError:
                             if id_name=='show':
@@ -73,6 +70,10 @@ while True:
                         cprint('\n\n\t\t\t\tList of saved passwords\n',clr,attrs=['bold'])
                         for x in dirs:cprint(f'\t\t\t\t\t{x}',clr,attrs=['bold'])
                         input()
+
+                    elif user_choice=="--mkrec":
+                        cprint("Sorry, This feature is not available at the moment",'red',attrs=['bold'])
+                        sleep(1.748)
 
                     elif user_choice=="--move":
                         old_path=open("data/path_dir",'r').read()

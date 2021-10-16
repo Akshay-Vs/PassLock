@@ -1,3 +1,4 @@
+<img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/f.5.png"/>
 <h1 align="center">:closed_lock_with_key:Pass-Lock <br>AES-encrypted-password-manager
  </h1>
 <h3 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h3>
@@ -29,7 +30,7 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <br>
 <br>
 
-<img align="center" src="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/blob/PassLock2.0-Development/resources/images/Screenshot-1.png"/>
+<img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/Screenshot-1.png"/>
 <br>
 <h2 align="left"><u><b>Features</b></u></h2>
   &bull;  AES Encryption<br>
@@ -101,12 +102,12 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <code>-c    </code>copy password to clipboard<br>
 <code>-r    </code>or leaving password blank will generate a random password<br>
 <code>-r 40 </code> initialize random password with key length<br>
+<code>-edit</code>To edit passwords<br>
 <code>--help</code>help<br>
 <code>--move</code>Move passwords to different folder<br>
 <code>--p</code>To change path<br>
 <code>--list</code>To list all password ids<br>
 <code>--Exit</code>close all files and exit console application<br>
-
 
 <h2 align='left'><u><b>License and Copyright</b></u></h2>
 Lisence: MIT Lisence<br>

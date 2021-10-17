@@ -421,6 +421,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					else:
 						cprint("\tSkipping...\n\tInvalid Password",'red',attrs=[attr])
 						sleep(1.748)
+			elif not _choice:pass
 			else:
 				cprint("\tAccess denied",'red',attrs=[attr])
 				sleep(1.748)

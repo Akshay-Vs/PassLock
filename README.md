@@ -35,7 +35,7 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <h2 align="left"><u><b>Features</b></u></h2>
   &bull;  AES Encryption<br>
   &bull; Custom key<br>
-  &bull; Random encryption type
+  &bull; Random encryption type <br>
   &bull; random password generator<br>
   &bull; Clipboard Copy<br>
   &bull; Custom path<br>

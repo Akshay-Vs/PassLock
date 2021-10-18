@@ -67,20 +67,22 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <h2 align='left'><u><b>Development</b></u></h2>
 
 &bull; Version 2.0f2<br>
-&bull; Last stable release <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/tags/v1.6.zip">1.9.6</a>  
-&bull; Major Update History:
-<tab>
+&bull; Last stable release <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/tags/v1.6.zip">1.9.6</a> 
+<details>
+ <summary>&bull;<b> Major Update History:</b></summary>
+<pre>
 
-| version | release date |features|
-|---------|--------------|--------|
+
+| version | release date |features                                                                                      |
+|---------|--------------|-----------------------------------------|
 | 0.4     | 18-8-2021    |16-bit password encryption and decryption
 | 1.0     | 21-8-2021    |Enhanced security<br>Bug Fixes<br>Added 40-bit password genetator<br>optimized performance
 | 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
 | 1.6     | 06-9-2021    |Added new command to change path<br>Improved Startup speed<br>Fixed Random Password generation bug<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption<br>Added --list command to list all saved password
-| 1.7     | 20-9-2021    |Security Update:<br>  &nbsp;&nbsp; - Added seperate key to encrypt password to improve security<br>  &nbsp;&nbsp; - Fixed Some Security faults<br>  &nbsp;&nbsp; - Added a Process Manager that constanty monitor all processes(experimental)
+| 1.7     | 20-9-2021    |Security Update:<br>  &nbsp;&nbsp; - Added seperate key to encrypt password to improve security<br>  &nbsp;&nbsp; - Fixed Some Security faults<br>  &nbsp;&nbsp; - Added a Process Manager that constanty monitor all processes
 | 2.0f2   | early access |Added new commands<br>Added notifications enabled<br>Added a cool looking Terminal Graphical interface<br>Added parallel encryption<br>Added multiple page tui<br>Optimized encryption<br>Changed data saving method<br>Optimized startup time to milliseconds<br>Faster Encryption<br>Improved BitRate<br>Multiple keys supports<br>Bug fixes<br>Improved process manager<br>
- 
-
+</pre>
+</details>
 &bull; Developer: Akshay Vs<br>
 <h2 align="left"><b>Connect with me</b></h2>
 <p align="left">

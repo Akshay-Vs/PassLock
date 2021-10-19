@@ -63,7 +63,7 @@ class KeyProcess:
 		encrypted_iteration=str(encrypted_iteration)
 		encrypted_iteration=(encrypted_iteration.split("'")[-2])
 
-		open(f"{path}/itearables",'w+').write(encrypted_iteration)
+		open(f"{path}/iterables",'w+').write(encrypted_iteration)
 		open(f"data/exc.pyc",'w+').write(f'|?~p~;{encrypted_password}|?~p~;')
 
 		compress(['data/exc.pyc'],f'{path}/password.psl',b"passlock")
@@ -75,7 +75,7 @@ class KeyProcess:
 	def decrypt_password(self,key,path):
 		try:
 			aes=AESCipher(key)
-			iteration=open(f"{path}/itearables",'r').read()
+			iteration=open(f"{path}/iterables",'r').read()
 			iteration=aes.decrypt(iteration)
 			iteration=int(iteration)
 			password=open(f"{path}/password.psl",'rb').read()
@@ -106,7 +106,7 @@ class Screen:
 		#self.path=open('data/path_dir','r').read()
 		pass
 
-	def ui(self,name,clr=primary_color,attr='blink',show=None):
+	def ui(self,name,clr=primary_color,attr='blink',option=None):
 	
 		ids=os.listdir(open('data/path_dir','r').read())
 		recent=[None,None,None,None,None,None,None,None,None]
@@ -371,7 +371,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 		elif name=='show_screen':
 			
 			path_dir=open('data/path_dir','r').read()
-			path=f'{path_dir}/{show}'
+			path=f'{path_dir}/{option}'
 			decrypted_password=KeyProcess().decrypt_password(self.private_key,path)
 			raw_encrypted_password=open(f'{path}/password.psl','rb').read()
 			raw_encrypted_password=str(raw_encrypted_password)
@@ -385,10 +385,10 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			raw_encrypted_password=(raw_encrypted_password.split("|?~p~;")[-2])
 
 			cprint(show_screen(),color=clr,attrs=[attr])
-			cprint(f'\tIdentification Name: {show}',clr,attrs=[attr])
+			cprint(f'\tIdentification Name: {option}',clr,attrs=[attr])
 
 			cprint(f'\n\tEncrypted Password : {raw_encrypted_password}\n',clr,attrs=[attr])
-			cprint(f'\tSaved path         : {path_dir}/{show}\n',clr,attrs=[attr])
+			cprint(f'\tSaved path         : {path_dir}/{option}\n',clr,attrs=[attr])
 			cprint(f"\tDecrypted Password : {decrypted_password}\n",clr,attrs=[attr])
 			cprint("\t-c to copy password to clipboard\n\t-edit to edit password",clr,attrs=[attr])
 			KeyProcess().encrypt_password(decrypted_password,self.private_key,path)
@@ -408,19 +408,14 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 					if r =='-r':new_password=generate_random_password()
 					else:new_password=generate_random_password(int(r))
-					typing(f"\nGenerated Password:{new_password}\n",'cyan',typing_speed=len(new_password)/0.045)
+				
+				if decrypted_master_password==raw_password:
 					KeyProcess().encrypt_password(new_password,self.private_key,path)
 					cprint("\tWriting new password...",clr,attrs=[attr])
 					sleep(1.748)
-
 				else:
-					if decrypted_master_password==raw_password:
-						KeyProcess().encrypt_password(new_password,self.private_key,path)
-						cprint("\tWriting new password...",clr,attrs=[attr])
-						sleep(1.748)
-					else:
-						cprint("\tSkipping...\n\tInvalid Password",'red',attrs=[attr])
-						sleep(1.748)
+					cprint("\tSkipping...\n\tInvalid Password",'red',attrs=[attr])
+					sleep(1.748)
 			elif not _choice:pass
 			else:
 				cprint("\tAccess denied",'red',attrs=[attr])

@@ -1,4 +1,3 @@
-from hashlib import new
 import sys
 clr='blue'
 for i in range(3):
@@ -51,7 +50,7 @@ while True:
                         clear()
                         id_name=user_choice.replace("show ","")
                         id_name=id_name.replace(" ","_")
-                        try:screen.ui('show_screen',show=id_name)
+                        try:screen.ui('show_screen',option=id_name)
                         except FileNotFoundError:
                             if id_name=='show':
                                 cprint('Error: Identification expected','red')
@@ -71,9 +70,6 @@ while True:
                         for x in dirs:cprint(f'\t\t\t\t\t{x}',clr,attrs=['bold'])
                         input()
 
-                    elif user_choice=="--mkrec":
-                        cprint("Sorry, This feature is not available at the moment",'red',attrs=['bold'])
-                        sleep(1.748)
 
                     elif user_choice=="--move":
                         old_path=open("data/path_dir",'r').read()
@@ -84,12 +80,59 @@ while True:
                         set_default=input('\t\t\t: ')
                         if set_default == "y" or "Y":
                             open("path_dir",'w').write(destination_path)
-                            cprint("Files moved successfully",clr,attrs=['bold'])
+                            cprint("\tFiles moved successfully",clr,attrs=['bold'])
                             sleep(1.748)
                         else:
                             os.mkdir(path_dir.read())
-                            cprint("Files moved successfully",'yellow',attrs=['bold'])
+                            cprint("\tFiles moved successfully",'yellow',attrs=['bold'])
                             sleep(1.748)
+
+                    elif user_choice=='--mkrec':
+                        cprint("This feature is not available at the moment","red",attrs=["bold"])
+                        sleep(1.748)
+                        '''cprint("\tEnter a name for recovery point",clr,attrs=["bold"])
+                        name=input("\t\t\t: ")
+                        cprint("\tEnter a folder path to save recovery point",clr,attrs=['bold'])
+                        recovery_path=input("\t\t\t: ")
+                        compress(f"{recovery_path}",f'{name}.rec','passlock')'''
+
+                    elif '--del' in user_choice:
+                        if user_choice !="--del" or "--del ":                      
+                            user_choice=user_choice.replace("--del ","")
+                            user_choice=user_choice.replace(" ","_")
+                            cprint("\tEnter Master password",clr,attrs=['bold'])
+                            raw_password= password_input("\t\t\t: ")
+                            master_password=KeyProcess().decrypt(raw_password,'lib/ekey.psk')
+                            trash_file=f"{path_dir.read()}/{user_choice}"
+
+                            if master_password==raw_password:
+                                try:
+                                    os.remove(f"{trash_file}/iterables")
+                                    os.remove(f"{trash_file}/password.psl")
+                                    os.rmdir(trash_file)
+                                    cprint(f"\t{user_choice} deleted successfully",clr,attrs=['bold'])
+                                    sleep(1.748)
+                                except FileNotFoundError:
+                                    cprint("\tFile not found, Skipping Process",'red',attrs=['bold'])
+                                    sleep(1.748)
+                            else:
+                                cprint("\tInvalid password, Skipping process",'red',attrs=['bold'])
+
+                        else:
+                            cprint("\tInvalid Input: Expected identification name after command",'red',attrs=['bold'])
+                            sleep(1.748)
+
+                    elif user_choice=='--p':
+                        cprint("\tEnter new path",clr,attrs=['bold'])
+                        new_path=input("\t\t\t: ")
+                        open('data\path_dir','w+').write(f"{new_path}\Passlock")
+                        try:
+                            os.mkdir(f'{new_path}\Passlock')
+                            cprint("\tpath changed successfully",clr,attrs=['bold'])
+                        except FileExistsError:pass
+                        except Exception:
+                          cprint("\tSomething went wrong",'red',attrs=['bold'])
+                          sleep(1.748)
 
                     elif user_choice=='--help':
                         help.help()
@@ -126,28 +169,29 @@ while True:
     
     except FileNotFoundError as e:
         cprint(f'Files Missing: {e} Occured\nMake sure to make a recovery point next time','red',attrs=['bold'])
-        cprint('Please wait...','yellow')
+        cprint('\tPlease wait...','yellow')
         notify('\tCritical','Some Files Found Missing\nUse -r-rec command to read your recovery point',5)
 
-        rec=input("Enter path to recovery point: ")
-        if not rec:
+        recovery_path=input("Enter path to recovery point: ")
+
+        if not recovery_path:
             notify('report us',"feel free to report this issue")
             break
         sleep(2)
         
 
     except FileExistsError:
-        cprint("File Exist Error occured",'yellow')
+        cprint("\tFile Exist Error occured",'yellow')
         sleep(1.23)
     except OSError as e:
-        cprint(f"Error: {e} error occured",'red')
-        notify("Error Occured","Something went wrong that can't be fixed automatically")
-        input("press enter to exit")
+        cprint(f"\tError: {e} error occured",'red')
+        notify("\tError Occured","Something went wrong that can't be fixed automatically")
+        input("\tpress enter to exit")
         sys.exit()
 
     except ValueError as e:
-        cprint(f"Value Error Occured: {e}, Try again",'red')
-        cprint("\npress enter to restart",clr,attrs=['bold'])
+        cprint(f"\tValue Error Occured: {e}, Try again",'red')
+        cprint("\n\tpress enter to restart",clr,attrs=['bold'])
         input()
         
 

@@ -104,7 +104,11 @@ class Screen:
 
 	def __init__(self) -> None:
 		#self.path=open('data/path_dir','r').read()
-		pass
+		try:
+			open("data/user_data/.nomedia",'r')
+		except FileNotFoundError:
+			os.mkdir('data/user_data')
+			open('data/user_data/.nomedia','w+')
 
 	def ui(self,name,clr=primary_color,attr='blink',option=None):
 	

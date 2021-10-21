@@ -1,4 +1,4 @@
-<img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/f.5.png"/>
+<a href="https://github.com/Akshay-Vs/PassLock/archive/refs/heads/main.zip"<img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/f.5.png"/></a>
 <h1 align="center">:closed_lock_with_key:Pass-Lock <br>AES-encrypted-password-manager
  </h1>
 <h3 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h3>
@@ -30,7 +30,7 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <br>
 <br>
 
-<img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/Screenshot-1.png"/>
+<a href="https://github.com/Akshay-Vs/PassLock/archive/refs/heads/main.zip"><img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/Screenshot-1.png"/></a>
 <br>
 <h2 align="left"><u><b>Features</b></u></h2>
   &bull;  AES Encryption<br>

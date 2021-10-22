@@ -8,9 +8,9 @@ ______
 
 <p align="center"><u>
  <img align="center" src="https://badgen.net/badge/license/MIT/white"/>
- <img align="center" src="https://badgen.net/github/stars/akshay-vs/aes-encrypted-password-manager?color=white"/>
- <img align="center" src="https://badgen.net/github/watchers/akshay-vs/aes-encrypted-password-manager?color=white"/>
- <img align="center" src="https://badgen.net/github/forks/akshay-vs/aes-encrypted-password-manager?color=white"/>
+ <img align="center" src="https://badgen.net/github/stars/akshay-vs/passlock?color=white"/>
+ <img align="center" src="https://badgen.net/github/watchers/akshay-vs/passlock?color=white"/>
+ <img align="center" src="https://badgen.net/github/forks/akshay-vs/passlock?color=white"/>
  <br><br>
  <img align="center" src="https://badgen.net/github/checks/node-formidable/node-formidable/master/windows?color=white"/>
  <img align="center" src="https://badgen.net/badge/python/3.9/white"/>

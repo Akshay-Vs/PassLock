@@ -106,7 +106,7 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
 <code>-edit</code>To edit passwords<br>
 <code>--help</code>help<br>
 <code>--move</code>Move passwords to different folder<br>
-<code>--del name</code> To delete password
+<code>--del name</code> To delete password<br>
 <code>--p</code>To change path<br>
 <code>--list</code>To list all password ids<br>
 <code>--Exit</code>close all files and exit console application<br>

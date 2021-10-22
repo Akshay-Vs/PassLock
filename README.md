@@ -45,7 +45,6 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
  <h2 align='left'><u><b>Language</b></u></h2>
  &bull; python3
  <br>
- 
  <h2 align='left'><u><b>Installation</b></u></h2>
  <p>Install using git bash 
  <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code><br>

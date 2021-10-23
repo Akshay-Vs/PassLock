@@ -75,9 +75,6 @@ def compress(files,archive,password):
         with zf.open(file) as f:
             f.read().decode()
 
-
-        #zf.extract(file, "/tmp", pwd=password)
-
 if __name__=="__main__":
     clear()
     print('Password: ',password_input("Enter password: "))

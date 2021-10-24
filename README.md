@@ -1,6 +1,6 @@
-<a href="https://github.com/Akshay-Vs/PassLock/archive/refs/heads/main.zip"><img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/f.5.png"/></a>
+<a href="https://github.com/Akshay-Vs/PassLock/archive/refs/heads/main.zip"><img align="center" src="https://github.com/Akshay-Vs/PassLock/blob/main/.resources/images/f.4.png" width="100%"/></a>
  </h1>
-<h3 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h3>
+<h2 align="center">A medium security python password manager that encrypt passwords using  Advanced Encryption Standard (AES)</h2>
 
 
 ______
@@ -10,7 +10,6 @@ ______
  <img align="center" src="https://badgen.net/github/stars/akshay-vs/passlock?color=white"/>
  <img align="center" src="https://badgen.net/github/watchers/akshay-vs/passlock?color=white"/>
  <img align="center" src="https://badgen.net/github/forks/akshay-vs/passlock?color=white"/>
- <br><br>
  <img align="center" src="https://badgen.net/github/checks/node-formidable/node-formidable/master/windows?color=white"/>
  <img align="center" src="https://badgen.net/badge/python/3.9/white"/>
  
@@ -21,10 +20,10 @@ _____________
 <pr>
 PassLock is a password manager and password generator that encrypts passwords using AES and save them securely on your local machine.
 The password is encrypted and decrypted using a user defined key and will get updated in each use.
-Eextending the length of the private kry will steadily improve the overall security.
-PassLock also generates a 40-bit long password that contains lowercase, uppercase letters, numbers, and symbols.
+Eextending the length of the private key will steadily improve the overall security.
+PassLock also generates a 40-bit long password consists of lowercase, uppercase letters, numbers, and symbols.
 Passlock's 220bit AES encryption and infinitely long password generator make your passwords nearly impossible to break.
-Passlock's Console Based User Interface will definitely help to enhance your experience.
+It's Console Based User Interface will definitely help to enhance your experience.
 </pr>
 <br>
 <br>
@@ -55,12 +54,12 @@ Passlock's Console Based User Interface will definitely help to enhance your exp
  &bull; PassLock requeres 3 third party modules, and it will automatically install while running<br>
 
    
-| requermets | requered version |
-| ---------  | ---------------- |
-| Python     | 3.7+             |
-| Crypto     | 1.4+             |
-| termcolor  | 1.1+             |
-| pyperclip  | 1.8+             |
+| requirements | required version |
+| ---------    | ---------------- |
+| Python3      | 3.7+             |
+| Crypto       | 1.4+             |
+| termcolor    | 1.1+             |
+| pyperclip    | 1.8+             |
 
 <h2 align='left'><u><b>Development</b></u></h2>
 

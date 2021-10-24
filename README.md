@@ -41,7 +41,7 @@ It's Console Based User Interface will definitely help to enhance your experienc
   &bull; Process Monitor
   
  <h2 align='left'><u><b>Languages Used</b></u></h2>
- &bull; python3<>br
+ &bull; python3<br>
  &bull; C++ 17<br>
  
  <h2 align='left'><u><b>Installation</b></u></h2>

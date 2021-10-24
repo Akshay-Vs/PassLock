@@ -44,12 +44,6 @@ It's Console Based User Interface will definitely help to enhance your experienc
  &bull; python3<br>
  &bull; C++ 17<br>
  
- <h2 align='left'><u><b>Installation</b></u></h2>
- <p>Install using git bash 
- <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code><br>
- Or click download button 👇 <br>
- <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/heads/main.zip" target="blank"><img align="center" src="https://github.com/Akshay-Vs/resources/blob/main/src/download_bt.png" alt="blank" height="78" width="200" /></a>
- 
  <h2 align='left'><u><b>Requerments</b></u></h2>
  &bull; PassLock requered python 3.7 or above<br>
  &bull; PassLock requeres 3 third party modules, and it will automatically install while running<br>
@@ -89,6 +83,12 @@ It's Console Based User Interface will definitely help to enhance your experienc
 <a href="https://instagram.com/__akshay_v5__" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="__akshay_v5__" height="30" width="40" /></a>
 </p>
 
+ <h2 align='left'><u><b>Installation</b></u></h2>
+ <p>Install using git bash 
+ <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code><br>
+ Or click download button 👇 <br>
+ <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/heads/main.zip" target="blank"><img align="center" src="https://github.com/Akshay-Vs/resources/blob/main/src/download_bt.png" alt="blank" height="78" width="200" /></a>
+ 
 <h2 align='left'><u><b>How to use?</b></u></h2>
 &#9724;Download and Extract the Zip file<br>
 &#9724;Run PassLock to open Password manager<br>

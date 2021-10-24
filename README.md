@@ -51,7 +51,7 @@ It's Console Based User Interface will definitely help to enhance your experienc
  <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/heads/main.zip" target="blank"><img align="center" src="https://github.com/Akshay-Vs/resources/blob/main/src/download_bt.png" alt="blank" height="78" width="200" /></a>
  
  <h2 align='left'><u><b>Requerments</b></u></h2>
- &bull; PassLock requered python 3.7 and above<br>
+ &bull; PassLock requered python 3.7 or above<br>
  &bull; PassLock requeres 3 third party modules, and it will automatically install while running<br>
 
    

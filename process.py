@@ -110,6 +110,33 @@ class Screen:
 			os.mkdir('data/user_data')
 			open('data/user_data/.nomedia','w+')
 
+	def write_json(self,path,last_success,last_failed,created_date,
+									generation_type,last_view,encoder):
+
+		data_dict={
+			"last_success":last_success,
+			"last_failed":last_failed,
+			"created_date":created_date,
+			"generation_type":generation_type,
+			"last_view":last_view,
+			"encoder":encoder
+			} 
+		with open(path,'w') as f:
+			f.write(json.dumps(data_dict, indent=4))
+
+	def read_json(self,path):
+		with open(path,'r') as f:
+			data_read=json.loads(f.read())
+			
+		self.last_success=data_read["last_success"]
+		self.last_failed=data_read["last_failed"]
+		self.created_date=data_read["created_date"]
+		self.generation_type=data_read["generation_type"]
+		self.last_view=data_read["last_view"]
+		self.encoder=data_read["encoder"]
+
+		return data_read
+
 	def ui(self,name,clr=primary_color,attr='blink',option=None):
 	
 		ids=os.listdir(open('data/path_dir','r').read())
@@ -117,7 +144,6 @@ class Screen:
 		for x in ids:recent.append(x)
 		recent.reverse()
 		del recent[9:]
-		
 		status="Done"
 		status1="Error"
 		self.encryption_state="Success\t  "
@@ -134,7 +160,8 @@ class Screen:
 		encrypted_password=""
 		decrypted_password=""
 
-				
+
+
 		home_screen_top=(f'''
                                     	             _______________________________________________________________
                                                     |           ____                  __               __           |
@@ -437,3 +464,4 @@ if __name__=="__main__":
 	byt=aes.encrypt("password")
 	print(byt)
 	print(aes.decrypt(byt))
+

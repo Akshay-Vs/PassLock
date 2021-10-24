@@ -40,9 +40,10 @@ It's Console Based User Interface will definitely help to enhance your experienc
   &bull; Terminal User Interface<br>
   &bull; Process Monitor
   
- <h2 align='left'><u><b>Language</b></u></h2>
- &bull; python3
- <br>
+ <h2 align='left'><u><b>Languages Used</b></u></h2>
+ &bull; python3<>br
+ &bull; C++ 17<br>
+ 
  <h2 align='left'><u><b>Installation</b></u></h2>
  <p>Install using git bash 
  <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code><br>

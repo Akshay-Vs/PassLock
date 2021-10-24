@@ -29,37 +29,37 @@
     pcapFile.open(inputFile.c_str(),  ios::binary);
 
     if(!pcapFile.is_open()) {
-    cerr << "Pcap file couldn't open!" << endl;
+    cerr << "Failed To Open file" << endl;
     return 0;
     } else {
     if(debugInfo)
-    cout << "Pcap file successfully opened" << std::endl;
+    cout << "file opened SuccessFully" << std::endl;
     }
 
     if(debugInfo)
-    cout << " ----- Load file to array buffer[]" << endl;
+    cout << "buffer[]" << endl;
     pcapFile.seekg(0, pcapFile.end);
     long sizeOfPcap = pcapFile.tellg();
     pcapFile.seekg(0, pcapFile.beg);
 
     if(debugInfo)
-    cout << "Size of pcap file: " << sizeOfPcap << endl;
+    cout << "File Size: " << sizeOfPcap << endl;
     	int pcapPointer = 0;
     	int pcapPointerStart = 0;
     char * buffer;
     buffer = new char [sizeOfPcap];
     	streamsize loadBites = pcapFile.readsome(buffer, sizeOfPcap);
     if(debugInfo) {
-	    cout << "-- pcapPointer: " << decAndHexStr(pcapPointer) << endl;
-    	cout << "-- pcapPointerStart: " << decAndHexStr(pcapPointerStart) << endl;
-    cout << "-- transferDataSizeByte: " << decAndHexStr(transferDataSizeByte) << endl;
-    cout << "-- pcapPointerStart + transferDataSizeByte: " << decAndHexStr(pcapPointerStart + transferDataSizeByte) << endl;
+	    cout << "Pointer " << decAndHexStr(pcapPointer) << endl;
+    	cout << "PointerStart: " << decAndHexStr(pcapPointerStart) << endl;
+    cout << "transferDataSizeByte: " << decAndHexStr(transferDataSizeByte) << endl;
+    cout << "pcapPointerStart + transferDataSizeByte: " << decAndHexStr(pcapPointerStart + transferDataSizeByte) << endl;
     }
     if(loadBites != sizeOfPcap) {
-        cerr << "Loading data problem... expected: " << sizeOfPcap << "  stored: " << loadBites << endl;
+        cerr << "expected: " << sizeOfPcap << "  stored: " << loadBites << endl;
         cerr.flush();
         return 0;
     } else {
         if(debugInfo)
-            cout << "Pcap file successfully load" << std::endl;
+            cout << "File Loaded Successfully " << std::endl;
     }

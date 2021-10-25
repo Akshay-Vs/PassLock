@@ -98,8 +98,6 @@ class KeyProcess:
 		splitted_reencrypted_password=(t.split("'")[-2])
 		root.write(splitted_reencrypted_password)
 
-		
-
 class Screen:
 
 	def __init__(self) -> None:
@@ -110,15 +108,18 @@ class Screen:
 			os.mkdir('data/user_data')
 			open('data/user_data/.nomedia','w+')
 
-	def write_json(self,path,last_success,last_failed,created_date,
-									generation_type,last_view,encoder):
+			##json##
 
+	def write_json(self,path,last_success,success_preview,last_failed,
+							failed_preview,created_date,generation_type,total_views,encoder):
 		data_dict={
 			"last_success":last_success,
+			"success_preview":success_preview,
 			"last_failed":last_failed,
+			"failed_preview":failed_preview,
 			"created_date":created_date,
 			"generation_type":generation_type,
-			"last_view":last_view,
+			"total_views":total_views,
 			"encoder":encoder
 			} 
 		with open(path,'w') as f:
@@ -129,13 +130,18 @@ class Screen:
 			data_read=json.loads(f.read())
 			
 		self.last_success=data_read["last_success"]
+		self.success_preview=data_read["success_preview"]
 		self.last_failed=data_read["last_failed"]
 		self.created_date=data_read["created_date"]
 		self.generation_type=data_read["generation_type"]
-		self.last_view=data_read["last_view"]
+		self.total_views=data_read["total_views"]
 		self.encoder=data_read["encoder"]
+		self.failed_preview=data_read["failed_preview"]
 
+		#print(data_read)
 		return data_read
+
+		##ui##
 
 	def ui(self,name,clr=primary_color,attr='blink',option=None):
 	
@@ -150,9 +156,10 @@ class Screen:
 		method="AES124"
 		last_view=''
 		created_date=""
-		generation_type="Random"
 		self.bitrate=None
 		encoder='Built-in AES124'
+		generation_type="Random"
+		encryption_state="Success"
 		success_preview=2
 		failed_preview=0
 		self.error_message=''
@@ -202,8 +209,8 @@ class Screen:
 		def show_screen():
 			return f'''
 
-        {self.encryption_state}  |  Last View   : {last_view   }  |  Password Type : {generation_type}   |   Success Previews: {success_preview}   | Total Bits : {self.bitrate}
-        {method}      |  Created Date: {created_date}  |  Encoder :{encoder } |   Failed Previews : {failed_preview}
+        {self.encryption_state}  |  Last View   : {self.last_success   }  |  Password Type : {self.generation_type}   |   Success Previews: {self.success_preview}   | Total Bits : {self.bitrate}
+        {method}      |  Created Date: {self.created_date}  |  Encoder : Built-in AES   |   Failed Previews : {self.failed_preview}
 	_______________________________________________________________________________________________________________
 
 
@@ -246,7 +253,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 		create_new=(f'''
 
-		{self.encryption_state}  |  Password Type : {generation_type}  |  Created Date: {created_date}  |  Encoder :{encoder }
+		{encryption_state}  |  Password Type : {generation_type}  |  Created Date: {created_date}  |  Encoder :{encoder }
 		{method}           
 	_______________________________________________________________________________________________________________
 
@@ -329,6 +336,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 			try:
 				if '-r' in raw_password or raw_password == '':
+					generation_type="Random"
 					t=str(raw_password)
 					r=(t.split(" ")[-1])
 
@@ -347,12 +355,15 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					
 
 				else:
+					generation_type="Manual"
 					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key,path)
 					cprint(f'Encrypted password: {encrypted_password}')
 					cprint(f'\nSaving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
 					sleep(0.596)
 					cprint("Done",'yellow')
 					sleep(1.232629)
+
+				self.write_json(f"{path_dir}/{id}/readables.json",time.ctime(),0,None,0,time.ctime(),generation_type,0,encoder)
 
 			except FileExistsError:
 				clear()
@@ -400,18 +411,25 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(home_screen_bottom,clr,attrs=[attr])
 
 		elif name=='show_screen':
-			
 			path_dir=open('data/path_dir','r').read()
 			path=f'{path_dir}/{option}'
 			decrypted_password=KeyProcess().decrypt_password(self.private_key,path)
 			raw_encrypted_password=open(f'{path}/password.psl','rb').read()
 			raw_encrypted_password=str(raw_encrypted_password)
+			self.read_json(f'{path_dir}/{option}/readables.json')
 
 			if decrypted_password == "********":
 				self.encryption_state="Failed    "
+				self.failed_preview=self.failed_preview+1
+				self.last_failed=time.ctime()
 				try:notify('Invalid Key',"Entered secret key doesn't seems correct. Restart passlock with right key")
 				except:pass
-			
+			else:
+				self.encryption_state="Success   "
+				self.success_preview=self.success_preview+1
+				self.last_success=time.ctime()
+
+
 			self.bitrate=len(raw_encrypted_password)
 			raw_encrypted_password=(raw_encrypted_password.split("|?~p~;")[-2])
 
@@ -424,6 +442,11 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint("\t-c to copy password to clipboard\n\t-edit to edit password",clr,attrs=[attr])
 			KeyProcess().encrypt_password(decrypted_password,self.private_key,path)
 			_choice=input('\t\t\t')
+
+			self.total_views=self.total_views+1
+			self.write_json(f"{path_dir}/{option}/readables.json",self.last_success,self.success_preview,
+								self.last_failed,self.failed_preview,self.created_date,self.generation_type,self.total_views,self.encoder)
+
 			if _choice=='-c':pyperclip.copy(decrypted_password)
 
 			elif _choice=='-edit' and decrypted_password!="********":

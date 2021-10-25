@@ -14,7 +14,7 @@ import pyperclip
 import msvcrt
 import shutil
 import zipfile
-from json_io import *
+import json
 
 password_placeholder='*'
 max_index=50

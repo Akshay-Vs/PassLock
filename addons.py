@@ -14,6 +14,7 @@ import pyperclip
 import msvcrt
 import shutil
 import zipfile
+from json_io import *
 
 password_placeholder='*'
 max_index=50
@@ -74,6 +75,9 @@ def compress(files,archive,password):
         file = info[0]
         with zf.open(file) as f:
             f.read().decode()
+
+
+        #zf.extract(file, "/tmp", pwd=password)
 
 if __name__=="__main__":
     clear()

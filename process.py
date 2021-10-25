@@ -488,3 +488,6 @@ if __name__=="__main__":
 	print(byt)
 	print(aes.decrypt(byt))
 
+	i=Screen()
+	i.write_json("tst.json","10","76","87","98","98","AES124")
+	i.read_json("tst.json")

@@ -1,3 +1,4 @@
+from hashlib import new
 import sys
 clr='blue'
 for i in range(3):
@@ -195,7 +196,7 @@ while True:
         input()
         
 
-    except Exception:
+#    except Exception:
         cprint("Something went wrong,Please Try again",'red',attrs=['bold'])
         sleep(1)
         input("press enter to exit")

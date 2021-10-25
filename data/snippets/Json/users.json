@@ -1,9 +1,5 @@
-{
-  "users": [
-    {
+  {
       "username":null,
       "lastlogin":null,
       "lastattempt":null
     }
-  ]
-}

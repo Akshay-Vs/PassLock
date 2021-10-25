@@ -58,7 +58,7 @@ It's Console Based User Interface will definitely help to enhance your experienc
 
 <h2 align='left'><u><b>Development</b></u></h2>
 
-&bull; Current version  <a href ="https://github.com/Akshay-Vs/PassLock/archive/refs/tags/V2.0-Early-Access.zip">2.0f2</a><br>
+&bull; Current version  <a href ="https://github.com/Akshay-Vs/PassLock/archive/refs/tags/V2.0-Early-Access.zip">2.0f7</a><br>
 &bull; Last stable release <a href="https://github.com/Akshay-Vs/AES-Encrypted-Password-Manager/archive/refs/tags/v1.6.zip">1.9.6</a> 
 <details>
  <summary>&bull;<b> Major Update History:</b></summary>

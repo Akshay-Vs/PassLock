@@ -61,7 +61,7 @@ while True:
                             
                             else:
                                 cprint('Error: Invalid ID name','red')
-                                cprint('File not found, Enter a different id','yellow')
+                                cprint('File not found, Enter another id','yellow')
                                 cprint('Press Enter to continue',clr)
                                 input()
 
@@ -110,11 +110,15 @@ while True:
                                 try:
                                     os.remove(f"{trash_file}/iterables")
                                     os.remove(f"{trash_file}/password.psl")
+                                    os.remove(f"{trash_file}/readables.json")
                                     os.rmdir(trash_file)
                                     cprint(f"\t{user_choice} deleted successfully",clr,attrs=['bold'])
                                     sleep(1.748)
                                 except FileNotFoundError:
                                     cprint("\tFile not found, Skipping Process",'red',attrs=['bold'])
+                                    sleep(1.748)
+                                except OSError:
+                                    cprint(f"\tError: Foreign files found in {user_choice}",'red',attrs=['bold'])
                                     sleep(1.748)
                             else:
                                 cprint("\tInvalid password, Skipping process",'red',attrs=['bold'])
@@ -134,6 +138,11 @@ while True:
                         except Exception:
                           cprint("\tSomething went wrong",'red',attrs=['bold'])
                           sleep(1.748)
+                    
+                    elif "restart with " in user_choice:
+                        user_choice=user_choice.replace("restart with ","")
+                        #print(user_choice)
+                        screen.ui("restart_with",option=user_choice)
 
                     elif user_choice=='--help':
                         help.help()

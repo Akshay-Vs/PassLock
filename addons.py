@@ -17,7 +17,7 @@ import zipfile
 import json
 
 password_placeholder='*'
-max_index=50
+max_index=51
 
 if os.name=='posix':pass
 else:from notify import notify

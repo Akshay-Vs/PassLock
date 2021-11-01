@@ -70,7 +70,6 @@ class KeyProcess:
 		os.remove("data/exc.pyc")
 
 		return encrypted_password
-		
 
 	def decrypt_password(self,key,path):
 		try:

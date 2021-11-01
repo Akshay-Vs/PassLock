@@ -27,6 +27,7 @@ while True:
             path_dir=open('data/path_dir','r+')
         except FileNotFoundError:
             entry=open('data/entry.psk','w+')
+            path_dir=open("data/path_dir","w+")
             
         if 'pass' in entry:
             path_dir=open("data/path_dir",'r+')
@@ -164,8 +165,17 @@ while True:
             path=input("Enter path: ")
             for i in range(3):
                 try:
+                    if not path:
+                        path=__file__
+                        print(path)
+                        path=path.replace("\PassLock.py","")
+                        print(path)
+                        try:os.mkdir(f"{path}\passlock")
+                        except:pass
+                        path_dir.write(f"{path}\passlock")
+                        break
                     open('data/path_dir','w+').write(f'{path}/Passlock')
-                    os.mkdir(f'{path}/Passlock')
+                    os.mkdir(f'{path}\Passlock')
                 except FileExistsError as e:
                     cprint(f'{e}; Skipping path exists','yellow')
             clear()
@@ -188,8 +198,7 @@ while True:
             notify('report us',"feel free to report this issue")
             break
         sleep(2)
-        
-
+         
     except FileExistsError:
         cprint("\tFile Exist Error occured",'yellow')
         sleep(1.23)
@@ -203,7 +212,6 @@ while True:
         cprint(f"\tValue Error Occured: {e}, Try again",'red')
         cprint("\n\tpress enter to restart",clr,attrs=['bold'])
         input()
-        
 
     except Exception:
         cprint("Something went wrong,Please Try again",'red',attrs=['bold'])

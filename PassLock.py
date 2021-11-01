@@ -72,7 +72,6 @@ while True:
                         for x in dirs:cprint(f'\t\t\t\t\t{x}',clr,attrs=['bold'])
                         input()
 
-
                     elif user_choice=="--move":
                         old_path=open("data/path_dir",'r').read()
                         cprint("\tEnter destination path: ",clr,attrs=['bold'])

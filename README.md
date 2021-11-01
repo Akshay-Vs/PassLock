@@ -75,7 +75,10 @@ It's Console Based User Interface will definitely help to enhance your experienc
 | 2.0f2   | early access |Added new commands<br>Added notifications enabled<br>Added a cool looking Terminal Graphical interface<br>Added parallel encryption<br>Added multiple page tui<br>Optimized encryption<br>Changed data saving method<br>Optimized startup time to milliseconds<br>Faster Encryption<br>Improved BitRate<br>Multiple keys supports<br>Bug fixes<br>Improved process manager<br>
 </pre>
 </details>
-&bull; Developer: Akshay Vs<br>
+
+<h3>&bull; Developers</h3>
+<a href src="https://github.com/Akshay-Vs"> &nbsp;&nbsp; Akshay Vs</a><br>
+<a href src="https://github.com/Jim-Huo"> &nbsp;&nbsp; Jim-Huo</a><br>
 <h2 align="left"><b>Connect with me</b></h2>
 <p align="left">
 <a href="https://twitter.com/@Akshayv69128812" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@Akshayv69128812" height="30" width="40" /></a>

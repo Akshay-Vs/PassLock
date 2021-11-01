@@ -15,6 +15,7 @@ import msvcrt
 import shutil
 import zipfile
 import json
+import help
 
 password_placeholder='*'
 max_index=51

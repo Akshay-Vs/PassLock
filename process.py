@@ -291,6 +291,13 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(create_login,color=clr,attrs=[attr])
 			cprint('\n\tCreate a username',color=clr,attrs=[attr])
 			self.new_username=input("\t\t\t:")
+			
+			if self.new_username=="help":
+				help.help()
+				clear()
+				cprint(create_login,color=clr,attrs=[attr])
+				cprint('\n\tCreate a username',color=clr,attrs=[attr])
+				self.new_username=input("\t\t\t:")
 			cprint('\tCreate a password',color=clr,attrs=[attr])
 			self.new_password=input("\t\t\t:")
 			cprint("\tConfirm password",color=clr,attrs=[attr])
@@ -488,6 +495,3 @@ if __name__=="__main__":
 	print(byt)
 	print(aes.decrypt(byt))
 
-	i=Screen()
-	i.write_json("tst.json","10","76","87","98","98","AES124")
-	i.read_json("tst.json")

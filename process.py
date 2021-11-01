@@ -291,8 +291,13 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 			cprint(create_login,color=clr,attrs=[attr])
 			cprint('\n\tCreate a username',color=clr,attrs=[attr])
 			self.new_username=input("\t\t\t:")
+			
 			if self.new_username=="help":
 				help.help()
+				clear()
+				cprint(create_login,color=clr,attrs=[attr])
+				cprint('\n\tCreate a username',color=clr,attrs=[attr])
+				self.new_username=input("\t\t\t:")
 			cprint('\tCreate a password',color=clr,attrs=[attr])
 			self.new_password=input("\t\t\t:")
 			cprint("\tConfirm password",color=clr,attrs=[attr])

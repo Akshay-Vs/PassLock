@@ -187,7 +187,7 @@ class Screen:
 		--r n   to generate n bit password                  p3-{status1}             {recent[2]}                       
 		--p     to change currrent path_dir                 p4-{status}              {recent[3]}                      
 		--move  to move passwords                           p5-{status}              {recent[4]}                     
-		--del   to delete a password                        p6-{status1}             {recent[5]}                     
+		                                                    p6-{status1}             {recent[5]}                     
 		                                                    p7-{status1}             {recent[6]}  
 		                                                    p8-{status}              {recent[7]}
                                                                     p9-{status}              {recent[8]} ''')                     
@@ -199,6 +199,7 @@ class Screen:
 		home_screen_text=('''
 		\t\t new    - to create a new password
 		\t\t show <name>  - to show saved password
+		\t\t --del <name> - to delete a password
 		''')
 
 

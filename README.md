@@ -58,7 +58,7 @@ It's Console Based User Interface will definitely help to enhance your experienc
 
 <h2 align='left'><u><b>Development</b></u></h2>
 
-&bull; Current version  <a href ="https://github.com/Akshay-Vs/PassLock/archive/refs/tags/v2.0.zip">2.0f7.2</a><br>
+&bull; Current version  <a href ="https://github.com/Akshay-Vs/PassLock/archive/refs/tags/v2.0.zip">2.1b1.1</a><br>
 &bull; Last stable release <a href="https://github.com/Akshay-Vs/PassLock/archive/refs/tags/v2.0.zip">2.0.6</a> 
 <details>
  <summary>&bull;<b> Major Update History:</b></summary>

@@ -76,11 +76,6 @@ It's Console Based User Interface will definitely help to enhance your experienc
 </pre>
 </details>
 
-<h2>Developers</h2>
-<h3><a href="https://github.com/Akshay-Vs" target="blank"><img src="https://avatars.githubusercontent.com/u/85959609?v=4" height="3.5%" width="3.5%"></a>Akshay-Vs</h3>
-<h3><a href="https://github.com/Jim-Huo" target="blank"><img src="https://user-images.githubusercontent.com/85959609/139644303-16485461-5331-4989-9803-f72a6935565e.png" height="3.5%" width="3.5%"></a>Jim-Huo</h3>
-<br>
-
 <h2 align="left"><b>Connect with me</b></h2>
 <p align="left">
 <a href="https://twitter.com/@Akshayv69128812" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="@Akshayv69128812" height="30" width="40" /></a>
@@ -114,6 +109,11 @@ It's Console Based User Interface will definitely help to enhance your experienc
 <code>--p</code>To change path<br>
 <code>--list</code>To list all password ids<br>
 <code>--Exit</code>close all files and exit console application<br>
+
+<h2>Developers</h2>
+<h3><a href="https://github.com/Akshay-Vs" target="blank"><img src="https://avatars.githubusercontent.com/u/85959609?v=4" height="3.5%" width="3.5%"></a>Akshay-Vs
+<h3><a href="https://github.com/Jim-Huo" target="blank"><img src="https://user-images.githubusercontent.com/85959609/139644303-16485461-5331-4989-9803-f72a6935565e.png" height="3.5%" width="3.5%"></a>Jim-Huo</h3>
+<br>
 
 <h2 align='left'><u><b>License and Copyright</b></u></h2>
 Lisence: MIT Lisence<br>

@@ -88,7 +88,6 @@ It's Console Based User Interface will definitely help to enhance your experienc
  <code>$git clone https://github.com/Akshay-Vs/AES-encrypted-password-manager.git</code><br>
  Or click download button 👇 <br>
  <a href="https://github.com/Akshay-Vs/PassLock/archive/refs/heads/main.zip" target="blank"><img align="center" src="https://github.com/Akshay-Vs/resources/blob/main/src/download_bt.png" alt="blank" height="78" width="200" /></a>
- <a href="https://github.com/Akshay-Vs/PassLock/raw/main/.resources/Installer/exe/PassLock-main.exe" target="blank"> Download for windows </a>
  
 <h2 align='left'><u><b>How to use?</b></u></h2>
 &#9724;Download and Extract the Zip file<br>

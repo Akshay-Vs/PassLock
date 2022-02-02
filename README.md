@@ -72,7 +72,7 @@ It's Console Based User Interface will definitely help to enhance your experienc
 | 1.1     | 26-8-2021    |Improved encryption<br>Unlimited length random password generator<br>User defined Key (upto 220 bit)
 | 1.6     | 06-9-2021    |Added new command to change path<br>Improved Startup speed<br>Fixed Random Password generation bug<br>Improved security<br>Now you can upgrade passowrds upto 62 bit encryption<br>Added --list command to list all saved password
 | 1.7     | 20-9-2021    |Security Update:<br>  &nbsp;&nbsp; - Added seperate key to encrypt password to improve security<br>  &nbsp;&nbsp; - Fixed Some Security faults<br>  &nbsp;&nbsp; - Added a Process Manager that constanty monitor all processes
-| 2.0     | early access |Added new commands<br>Added notifications enabled<br>Added a cool looking Terminal Graphical interface<br>Added parallel encryption<br>Added multiple page tui<br>Optimized encryption<br>Changed data saving method<br>Optimized startup time to milliseconds<br>Faster Encryption<br>Improved BitRate<br>Multiple keys supports<br>Bug fixes<br>Improved process manager<br>
+| 2.0     | 04-11-2021  |Added new commands<br>Added notifications enabled<br>Added a cool looking Terminal Graphical interface<br>Added parallel encryption<br>Added multiple page tui<br>Optimized encryption<br>Changed data saving method<br>Optimized startup time to milliseconds<br>Faster Encryption<br>Improved BitRate<br>Multiple keys supports<br>Bug fixes<br>Improved process manager<br>
 </pre>
 </details>
 

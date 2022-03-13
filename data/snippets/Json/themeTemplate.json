@@ -1,0 +1,21 @@
+{
+    "color": {
+        "color_primary": "cyan",
+        "color_error": "red",
+        "color_logo": "cyan",
+        "color_divider": "cyan",
+        "color_bg": null
+    },
+
+    "attributes": {
+        "primary": "bold",
+        "error": "bold",
+        "logo": null,
+        "divider": "bold"
+    },
+
+    "render": {
+        "speed" : 50,
+        "size": 50
+    }
+}

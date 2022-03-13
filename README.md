@@ -120,9 +120,4 @@ Lisence: MIT Lisence<br>
 &#169; 2021 Akshay-Vs
 
  
- 
-<h3>Future plans</h3>
- <p>
-  - Themes
-  - Extensions
-  </p>
+

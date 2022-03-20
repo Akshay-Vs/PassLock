@@ -1,0 +1,8 @@
+put a file "version.txt" in data directory. 
+if it's an older version create config/default.json in data/users directory 
+
+add a command to change theme:
+    show list of theme
+    enter name/ number of the theme to apply
+    restart code automatically to apply changes
+

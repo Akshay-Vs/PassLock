@@ -2,7 +2,6 @@ from os import remove
 from addons import *
 clear()
 Master_password=str()
-primary_color='cyan'
 
 class AESCipher(object):
 
@@ -355,9 +354,9 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key,path)
 					cprint(f"Encrypted password: {encrypted_password}",clr,attrs=[attr])
 		
-					cprint(f'Saving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
+					cprint(f'Saving {id} at {path_dir}/{id}...',warn,attrs=['bold'])
 					sleep(0.596)
-					cprint("Done",'yellow')
+					cprint("Done",warn)
 					sleep(1.232629)
 					
 
@@ -365,9 +364,9 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 					generation_type="Manual"
 					encrypted_password=encrypter.encrypt_password(raw_password,self.private_key,path)
 					cprint(f'Encrypted password: {encrypted_password}')
-					cprint(f'\nSaving {id} at {path_dir}/{id}...','yellow',attrs=['bold'])
+					cprint(f'\nSaving {id} at {path_dir}/{id}...',warn,attrs=['bold'])
 					sleep(0.596)
-					cprint("Done",'yellow')
+					cprint("Done",warn)
 					sleep(1.232629)
 
 				self.write_json(f"{path_dir}/{id}/readables.json",time.ctime(),0,None,0,time.ctime(),generation_type,0,encoder)
@@ -380,24 +379,24 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 				id=input('\t\t\t: ')
 				path=f'{path_dir}/{id}'
 				encrypter.encrypt_password(raw_password,self.private_key,path)
-				cprint(f"\nSaving Done {id} at {path_dir}",'yellow',attrs=['bold'])
+				cprint(f"\nSaving Done {id} at {path_dir}",warn,attrs=['bold'])
 				sleep(1.638)
 
 			except ValueError as e:
 				error=str(e)
 				if 'invalid literal' in error:
 					cprint("\nOperation cancelled\nInvalid Literal Found: Entered value doesn't seems correct. Try to enter initializer<space>max_range\n\t\t\teg: -r 20, will generate a 20 bit long password",'red','on_grey',attrs=['bold'])
-					cprint('press Enter to continue','yellow')
+					cprint('press Enter to continue',warn)
 					input()
 					
 				else:
 					cprint("\nSomething went wrong, please try again",'red')
-					cprint('press Enter to continue','yellow')
+					cprint('press Enter to continue',warn)
 					input()
 
 			except Exception:
 				cprint("\nSomething went wrong, please try again",'red')
-				cprint('press Enter to continue','yellow')
+				cprint('press Enter to continue',warn)
 				input()
 
 		elif name=='master_password_screen':
@@ -414,7 +413,7 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 		elif name=='home_screen':
 			cprint(home_screen_top,color=clr,attrs=[attr])
 			cprint(f'\n\t\t\t\t path_dir:- {open("data/path_dir","r").read()}',clr,attrs=[attr])
-			cprint(home_screen_text,'yellow',attrs=['bold'])
+			cprint(home_screen_text,warn,attrs=['bold'])
 			cprint(home_screen_bottom,clr,attrs=[attr])
 
 		elif name=='show_screen':

@@ -16,6 +16,7 @@
 
     "render": {
         "speed" : 50,
-        "size": 50
+        "size": 50,
+        "password_placeholder": "*"
     }
 }

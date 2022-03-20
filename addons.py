@@ -17,8 +17,14 @@ import zipfile
 import json
 import help
 
+
 password_placeholder='*'
 max_index=51
+warn='yellow'
+error='red'
+primary_color='cyan'
+secondary='blue'
+
 
 if os.name=='posix':pass
 else:from notify import notify

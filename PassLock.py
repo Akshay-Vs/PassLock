@@ -1,6 +1,6 @@
 from hashlib import new
 import sys
-clr='blue'
+
 for i in range(3):
     try:
         import os
@@ -37,11 +37,11 @@ while True:
                 key=screen.ui("login_screen")
                 clear()
                 print('\n\n\n\n')
-                typing('\t\t\tloading...\t\t\t',clr)
+                typing('\t\t\tloading...\t\t\t',secondary)
                 while True:    
                     clear()
                     screen.ui('home_screen')
-                    cprint('\t\t\bEnter Input',clr,attrs=['bold'])
+                    cprint('\t\t\bEnter Input',secondary,attrs=['bold'])
                     user_choice=str(input('\t\t\t : '))
 
                     if user_choice =='new':
@@ -55,33 +55,33 @@ while True:
                         try:screen.ui('show_screen',option=id_name)
                         except FileNotFoundError:
                             if id_name=='show':
-                                cprint('Error: Identification expected','red')
+                                cprint('Error: Identification expected',error)
                                 cprint('Please provide Identification name eg: show name','yellow')
-                                cprint('Press Enter to continue',clr)
+                                cprint('Press Enter to continue',secondary)
                                 input()
                             
                             else:
-                                cprint('Error: Invalid ID name','red')
+                                cprint('Error: Invalid ID name',error)
                                 cprint('File not found, Enter another id','yellow')
-                                cprint('Press Enter to continue',clr)
+                                cprint('Press Enter to continue',secondary)
                                 input()
 
                     elif user_choice=="--list":
                         dirs=os.listdir(open('data/path_dir','r').read())
-                        cprint('\n\n\t\t\t\tList of saved passwords\n',clr,attrs=['bold'])
-                        for x in dirs:cprint(f'\t\t\t\t\t{x}',clr,attrs=['bold'])
+                        cprint('\n\n\t\t\t\tList of saved passwords\n',secondary,attrs=['bold'])
+                        for x in dirs:cprint(f'\t\t\t\t\t{x}',secondary,attrs=['bold'])
                         input()
 
                     elif user_choice=="--move":
                         old_path=open("data/path_dir",'r').read()
-                        cprint("\tEnter destination path: ",clr,attrs=['bold'])
+                        cprint("\tEnter destination path: ",secondary,attrs=['bold'])
                         destination_path=input('\t\t\t: ')
                         shutil.move(old_path,destination_path)
-                        cprint("\tDo you want to set new path as default?[y/n]: ",clr,attrs=['bold'])
+                        cprint("\tDo you want to set new path as default?[y/n]: ",secondary,attrs=['bold'])
                         set_default=input('\t\t\t: ')
                         if set_default == "y" or "Y":
                             open("path_dir",'w').write(destination_path)
-                            cprint("\tFiles moved successfully",clr,attrs=['bold'])
+                            cprint("\tFiles moved successfully",secondary,attrs=['bold'])
                             sleep(1.748)
                         else:
                             os.mkdir(path_dir.read())
@@ -89,11 +89,11 @@ while True:
                             sleep(1.748)
 
                     elif user_choice=='--mkrec':
-                        cprint("This feature is not available at the moment","red",attrs=["bold"])
+                        cprint("This feature is not available at the moment",error,attrs=["bold"])
                         sleep(1.748)
-                        '''cprint("\tEnter a name for recovery point",clr,attrs=["bold"])
+                        '''cprint("\tEnter a name for recovery point",secondary,attrs=["bold"])
                         name=input("\t\t\t: ")
-                        cprint("\tEnter a folder path to save recovery point",clr,attrs=['bold'])
+                        cprint("\tEnter a folder path to save recovery point",secondary,attrs=['bold'])
                         recovery_path=input("\t\t\t: ")
                         compress(f"{recovery_path}",f'{name}.rec','passlock')'''
 
@@ -101,7 +101,7 @@ while True:
                         if user_choice !="--del" or "--del ":                      
                             user_choice=user_choice.replace("--del ","")
                             user_choice=user_choice.replace(" ","_")
-                            cprint("\tEnter Master password",clr,attrs=['bold'])
+                            cprint("\tEnter Master password",secondary,attrs=['bold'])
                             raw_password= password_input("\t\t\t: ")
                             master_password=KeyProcess().decrypt(raw_password,'lib/ekey.psk')
                             trash_file=f"{path_dir.read()}/{user_choice}"
@@ -112,31 +112,31 @@ while True:
                                     os.remove(f"{trash_file}/password.psl")
                                     os.remove(f"{trash_file}/readables.json")
                                     os.rmdir(trash_file)
-                                    cprint(f"\t{user_choice} deleted successfully",clr,attrs=['bold'])
+                                    cprint(f"\t{user_choice} deleted successfully",secondary,attrs=['bold'])
                                     sleep(1.748)
                                 except FileNotFoundError:
-                                    cprint("\tFile not found, Skipping Process",'red',attrs=['bold'])
+                                    cprint("\tFile not found, Skipping Process",error,attrs=['bold'])
                                     sleep(1.748)
                                 except OSError:
-                                    cprint(f"\tError: Foreign files found in {user_choice}",'red',attrs=['bold'])
+                                    cprint(f"\tError: Foreign files found in {user_choice}",error,attrs=['bold'])
                                     sleep(1.748)
                             else:
-                                cprint("\tInvalid password, Skipping process",'red',attrs=['bold'])
+                                cprint("\tInvalid password, Skipping process",error,attrs=['bold'])
 
                         else:
-                            cprint("\tInvalid Input: Expected identification name after command",'red',attrs=['bold'])
+                            cprint("\tInvalid Input: Expected identification name after command",error,attrs=['bold'])
                             sleep(1.748)
 
                     elif user_choice=='--p':
-                        cprint("\tEnter new path",clr,attrs=['bold'])
+                        cprint("\tEnter new path",secondary,attrs=['bold'])
                         new_path=input("\t\t\t: ")
                         open('data\path_dir','w+').write(f"{new_path}\Passlock")
                         try:
                             os.mkdir(f'{new_path}\Passlock')
-                            cprint("\tpath changed successfully",clr,attrs=['bold'])
+                            cprint("\tpath changed successfully",secondary,attrs=['bold'])
                         except FileExistsError:pass
                         except Exception:
-                          cprint("\tSomething went wrong",'red',attrs=['bold'])
+                          cprint("\tSomething went wrong",error,attrs=['bold'])
                           sleep(1.748)
                     
                     elif "restart with " in user_choice:
@@ -153,14 +153,14 @@ while True:
                         sys.exit()
 
                     else:
-                        cprint('\n\t\t\t⚠ Invalid Input\n','red',attrs=['bold'])
+                        cprint('\n\t\t\t⚠ Invalid Input\n',error,attrs=['bold'])
                         sleep(1.748)
         
                     ##########################################################
             else:break
 
         else:
-            cprint("Where do I store passwords?",clr)
+            cprint("Where do I store passwords?",secondary)
             path=input("Enter path: ")
             for i in range(3):
                 try:
@@ -184,10 +184,10 @@ while True:
             entry.close()
             clear()
             
-    except KeyError:cprint("Key Interupted, Try again",'red')
+    except KeyError:cprint("Key Interupted, Try again",error)
     
     except FileNotFoundError as e:
-        cprint(f'Files Missing: {e} Occured\nMake sure to make a recovery point next time','red',attrs=['bold'])
+        cprint(f'Files Missing: {e} Occured\nMake sure to make a recovery point next time',error,attrs=['bold'])
         cprint('\tPlease wait...','yellow')
         notify('\tCritical','Some Files Found Missing\nUse -r-rec command to read your recovery point',5)
 
@@ -202,18 +202,18 @@ while True:
         cprint("\tFile Exist Error occured",'yellow')
         sleep(1.23)
     except OSError as e:
-        cprint(f"\tError: {e} error occured",'red')
+        cprint(f"\tError: {e} error occured",error)
         notify("\tError Occured","Something went wrong that can't be fixed automatically")
         input("\tpress enter to exit")
         sys.exit()
 
     except ValueError as e:
-        cprint(f"\tValue Error Occured: {e}, Try again",'red')
-        cprint("\n\tpress enter to restart",clr,attrs=['bold'])
+        cprint(f"\tValue Error Occured: {e}, Try again",error)
+        cprint("\n\tpress enter to restart",secondary,attrs=['bold'])
         input()
 
     except Exception:
-        cprint("Something went wrong,Please Try again",'red',attrs=['bold'])
+        cprint("Something went wrong,Please Try again",error,attrs=['bold'])
         sleep(1)
         input("press enter to exit")
         sys.exit()

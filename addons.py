@@ -1,3 +1,4 @@
+from distutils.command.config import config
 import string
 try:import posix as os
 except:import os

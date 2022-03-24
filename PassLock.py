@@ -209,7 +209,7 @@ while True:
 
     except ValueError as e:
         cprint(f"\tValue Error Occured: {e}, Try again",error)
-        cprint("\n\tpress enter to restart",secondarydrrr,attrs=['bold'])
+        cprint("\n\tpress enter to restart",secondary,attrs=['bold'])
         input()
 
     except Exception:

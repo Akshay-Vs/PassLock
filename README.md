@@ -89,7 +89,7 @@ It's Console Based User Interface will definitely help to enhance your experienc
  Or click download button 👇 <br>
  <a href="https://github.com/Akshay-Vs/PassLock/archive/refs/heads/main.zip" target="blank"><img align="center" src="https://github.com/Akshay-Vs/resources/blob/main/src/download_bt.png" alt="blank" height="78" width="200" /></a>
  
-Download for windows 👇<br>
+Download installer 👇<br>
  <a href="https://sourceforge.net/projects/passlock-windows/files/latest/download" target="blank"> <img src="https://github.com/Akshay-Vs/resources/blob/main/src/download%20(1).png" alt="blank" height="78" width="200"></a>
  
 <h2 align='left'><u><b>How to use?</b></u></h2>

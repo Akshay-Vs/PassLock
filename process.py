@@ -1,5 +1,6 @@
 from os import remove
 from addons import *
+
 clear()
 Master_password=str()
 

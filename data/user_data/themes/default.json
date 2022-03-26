@@ -1,0 +1,19 @@
+{
+    "color_primary": "red",
+    "color_secondary": "blue",
+    "color_error": "red",
+    "color_warn": "yellow",
+    "color_logo": "cyan",
+    "color_divider": "cyan",
+    "color_bg": null,
+
+    "primary": "bold",
+    "error": "bold",
+    "logo": null,
+    "divider": "bold",
+
+    "speed" : 50,
+    "size": 50,
+    "password_placeholder": "*",
+    "max_index": 50
+}

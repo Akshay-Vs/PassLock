@@ -1,30 +1,68 @@
-from distutils.command.config import config
 import string
-try:import posix as os
-except:import os
-import sys
-from random import random,choice
-from termcolor import cprint,colored
-from time import sleep
-import time
 import base64
 import hashlib
-from Crypto import Random
-from Crypto.Cipher import AES
-import pyperclip
+import json
 import msvcrt
 import shutil
+import sys
+import time
 import zipfile
-import json
 import help
+import pyperclip
+
+from Crypto import Random
+from Crypto.Cipher import AES
+from termcolor import colored, cprint
+from random import choice, random
+from time import sleep
+
+try:import posix as os
+except:import os
+
+class Theme:
+
+    def __init__(self,path):
+        self.path = path
+        self.fetch()
+
+    def fetch(self):
+        with open(self.path,'r') as f:
+            data_read=json.loads(f.read())
 
 
-password_placeholder='*'
-max_index=51
-warn='yellow'
-error='red'
-primary_color='cyan'
-secondary='blue'
+        #colors
+        
+        self.color_primary = data_read["color_primary"]
+        self.color_secondary = data_read["color_secondary"]
+        self.color_error = data_read["color_error"]
+        self.color_logo = data_read["color_logo"]
+        self.color_divider = data_read["color_divider"]
+        self.color_bg = data_read["color_bg"]
+        self.color_warn = data_read["color_warn"]
+
+        #attributes
+        self.primary = data_read["primary"]
+        self.error = data_read["error"]
+        self.logo = data_read["logo"]
+        self.divider = data_read["divider"]
+
+        #render
+        self.speed = data_read["speed"]
+        self.size = data_read["size"]
+        self.placeholder = data_read["password_placeholder"]
+        self.max_index = data_read["max_index"]
+
+    def refresh():
+        pass
+
+theme=Theme("data\\user_data\\themes\\default.json")
+
+password_placeholder = theme.placeholder
+max_index=theme.max_index
+warn=theme.color_warn
+error=theme.color_error
+primary_color=theme.color_primary
+secondary=theme.color_secondary
 
 
 if os.name=='posix':pass

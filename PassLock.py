@@ -161,9 +161,8 @@ while True:
                     screen.ui('home_screen')
                     cprint('\t\t\bEnter Input',secondary,attrs=['bold'])
                     user_choice=str(input('\t\t\t : ')).lower()
-                    passlock(user_choice)
-                    
-                    ##########################################################
+
+                    passlock(user_choice) #commands -> passlock() --> none
             else:break
 
         else:
@@ -198,9 +197,10 @@ while True:
         cprint(f'Files Missing: {e} Occured',error,attrs=['bold'])
         notify('\tCritical','Mission files or Broken files were found',5)
 
-        recovery_path=input("Enter recovery commands: ")
+        user_choice=input("Enter recovery commands: ")
+        passlock(user_choice)
 
-        if not recovery_path:
+        if not user_choice:
             notify('report us',"feel free to report this issue")
             break
         sleep(2)

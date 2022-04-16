@@ -183,12 +183,12 @@ class Screen:
 		TRs   -True                                       Process Monitor      Recent passwords                    
 		EKEY  -True
                                                             	    p1-{status}              {recent[0]}                      
-		--list  to list password IDs                        p2-{status}              {recent[1]}                      
-		--r n   to generate n bit password                  p3-{status1}             {recent[2]}                       
-		--p     to change currrent path_dir                 p4-{status}              {recent[3]}                      
-		--move  to move passwords                           p5-{status}              {recent[4]}                     
-		                                                    p6-{status1}             {recent[5]}                     
-		                                                    p7-{status1}             {recent[6]}  
+		new   to create a new password                      p2-{status}              {recent[1]}                      
+		move  to move passwords                             p3-{status}              {recent[2]}                       
+		list  to list password IDs                          p4-{status}              {recent[3]}                      
+		r <len>   to generate n bit password                p5-{status}              {recent[4]}                     
+		                                                    p6-{status}              {recent[5]}                     
+		                                                    p7-{status}              {recent[6]}  
 		                                                    p8-{status}              {recent[7]}
                                                                     p9-{status}              {recent[8]} ''')                     
 		
@@ -197,9 +197,9 @@ class Screen:
 		''')
 
 		home_screen_text=('''
-		\t\t new    - to create a new password
+		\t\t set path <path> - to change directory
 		\t\t show <name>  - to show saved password
-		\t\t --del <name> - to delete a password
+		\t\t del <name> - to delete a password
 		''')
 
 

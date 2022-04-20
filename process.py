@@ -136,9 +136,18 @@ class Screen:
 		self.total_views=data_read["total_views"]
 		self.encoder=data_read["encoder"]
 		self.failed_preview=data_read["failed_preview"]
+		
+		return_data=[]
+		return_data.append(self.last_success)
+		return_data.append(self.success_preview)
+		return_data.append(self.last_failed)
+		return_data.append(self.created_date)
+		return_data.append(self.generation_type)
+		return_data.append(self.total_views)
+		return_data.append(self.encoder)
+		return_data.append(self.failed_preview)
 
-		#print(data_read)
-		return data_read
+		return return_data
 
 		##ui##
 
@@ -172,8 +181,8 @@ class Screen:
                                     	             _______________________________________________________________
                                                     |           ____                  __               __           |
                                                     |          / __ \____ ___________/ /   ____  _____/ /__         |
-                --help - to get help                |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
-                --Exit - to exit                    |        / ____/ /_/ (__  |__  ) /___/ /_/ / /__/ ,<            |
+                help - to get help                  |         / /_/ / __ `/ ___/ ___/ /   / __ \/ ___/ //_/         |
+                Exit - to exit                      |        / ____/ /_/ (__  |__  ) /___/ /_/ / /__/ ,<            |
                                                     |       /_/    \__,_/____/____/_____/\____/\___/_/|_|           |
                                                     |                                                               |
                                                     |_______________________________________________________________|
@@ -489,9 +498,9 @@ ______________________________/WELCOME TO PASSLOCK LOGIN\_______________________
 
 
 if __name__=="__main__":
-	clear()
-	aes=AESCipher('key')
-	byt=aes.encrypt("password")
-	print(byt)
-	print(aes.decrypt(byt))
-
+	# clear()
+	# aes=AESCipher('key')
+	# byt=aes.encrypt("password")
+	# print(byt)
+	# print(aes.decrypt(byt))
+	for i in range(10):print(Screen().read_json("E:\\Passlock\\id1\\readables.json"))

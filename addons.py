@@ -15,9 +15,11 @@ from Crypto.Cipher import AES
 from termcolor import colored, cprint
 from random import choice, random
 from time import sleep
+from prettytable import PrettyTable
 
 try:import posix as os
 except:import os
+
 
 class Theme:
 
@@ -117,13 +119,9 @@ def compress(files,archive,password):
             print(f"Bad CRC or file headers: {crc_test}")
 
         info = zf.infolist() 
-
         file = info[0]
         with zf.open(file) as f:
             f.read().decode()
-
-
-        #zf.extract(file, "/tmp", pwd=password)
 
 if __name__=="__main__":
     clear()

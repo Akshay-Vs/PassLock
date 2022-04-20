@@ -44,10 +44,28 @@ def passlock(user_choice):
                 input()
 
     elif user_choice=="list":
+
+        table=PrettyTable()
+        table._set_single_border_style()
+
         dirs=os.listdir(open('data/path_dir','r').read())
         cprint('\n\n\t\t\t\tList of saved passwords\n',secondary,attrs=['bold'])
-        for x in dirs:cprint(f'\t\t\t\t\t{x}',secondary,attrs=['bold'])
+        print(dirs)
+        table.field_names=["ID","CreatedDate","Last Previews", "Type"]
+        clear()
+
+        for i in range(len(dirs)):
+            try:saved_data=Screen().read_json(open('data/path_dir','r').read()+f"//{dirs[i-1]}//readables.json")
+            except FileNotFoundError:pass
+            table.add_row([ dirs[i-1], saved_data[3], saved_data[0], saved_data[4] ])
+            print(saved_data)
+            clear()            
+            
+        cprint(table,secondary,attrs=["bold"])
+        cprint("Press Enter to continue",primary_color,attrs=["bold"])
         input()
+        dirs.clear()
+        saved_data.clear()
 
     elif user_choice=="move":
         old_path=open("data/path_dir",'r').read()
@@ -191,7 +209,7 @@ while True:
             clear()
         
             
-    except KeyError:cprint("Key Interupted, Try again",error)
+    #except KeyError:cprint("Key Interupted, Try again",error)
     
     except FileNotFoundError as e:
         cprint(f'Files Missing: {e} Occured',error,attrs=['bold'])
@@ -214,14 +232,14 @@ while True:
         input("\tpress enter to exit")
         sys.exit()
 
-    except ValueError as e:
+    #except ValueError as e:
         cprint(f"\tValue Error Occured: {e}, Try again",error)
         cprint("\n\tpress enter to restart",secondary,attrs=['bold'])
         input()
 
-    except Exception:
-        cprint("Something went wrong,Please Try again",error,attrs=['bold'])
-        sleep(1)
-        input("press enter to exit")
-        sys.exit()
+    # except Exception:
+    #     cprint("Something went wrong,Please Try again",error,attrs=['bold'])
+    #     sleep(1)
+    #     input("press enter to exit")
+    #     sys.exit()
         

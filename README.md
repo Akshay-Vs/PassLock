@@ -102,16 +102,16 @@ Download installer 👇<br>
 <h2 align='left'><u><b>Commands</b></u></h2>
 <code>new   </code>Create a new password<br>
 <code>show  </code>Decrypt and show password<br>
-<code>-c    </code>copy password to clipboard<br>
-<code>-r    </code>or leaving password blank will generate a random password<br>
-<code>-r 40 </code> initialize random password with key length<br>
-<code>-edit</code>To edit passwords<br>
-<code>--help</code>help<br>
-<code>--move</code>Move passwords to different folder<br>
-<code>--del name</code> To delete password<br>
-<code>--p</code>To change path<br>
-<code>--list</code>To list all password ids<br>
-<code>--Exit</code>close all files and exit console application<br>
+<code>c    </code>copy password to clipboard<br>
+<code>r    </code>or leaving password blank will generate a random password<br>
+<code>r 40 </code> initialize random password with key length<br>
+<code>edit</code>To edit passwords<br>
+<code>help</code>help<br>
+<code>move</code>Move passwords to different folder<br>
+<code>del name</code> To delete password<br>
+<code>p</code>To change path<br>
+<code>list</code>To list all password ids<br>
+<code>exit</code>close all files and exit console application<br>
 
 <h2>Developers</h2>
 <h3><a href="https://github.com/Akshay-Vs" target="blank"><img src="https://avatars.githubusercontent.com/u/85959609?v=4" height="3.5%" width="3.5%"></a>Akshay-Vs

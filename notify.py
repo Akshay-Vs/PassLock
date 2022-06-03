@@ -15,7 +15,7 @@ class notify:
         hinst = wc.hInstance = GetModuleHandle(None)
         wc.lpszClassName = "PythonTaskbar"
         wc.lpfnWndProc = message_map
-        classAtom = RegisterClass(wc)
+        classAtom = RegisterClass(wc) 
         # Create the Window.
         style = win32con.WS_OVERLAPPED | win32con.WS_SYSMENU
         self.hwnd = CreateWindow( classAtom, "Taskbar", style, \

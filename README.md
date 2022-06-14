@@ -18,12 +18,7 @@ ______
 _____________
 
 <pr>
-PassLock is a password manager and password generator that encrypts passwords using AES and save them securely on your local machine.
-The password is encrypted and decrypted using a user defined key and will get updated in each use.
-Eextending the length of the private key will steadily improve the overall security.
-PassLock also generates a 40-bit long password consists of lowercase, uppercase letters, numbers, and symbols
-Passlock's 220bit AES encryption and infinitely long password generator make your passwords nearly impossible to break and 
-It's Console Based User Interface will definitely help to enhance your experience.
+PassLock is a password manager and password generator that encrypts passwords using AES and saves them securely on your local machine. The password is encrypted and decrypted using a user-defined key and will get updated in each use. Extending the length of the private key will steadily improve the overall security. PassLock also generates a 40-bit long password consisting of lowercase, uppercase letters, numbers, and symbols Passlock's 220bit AES encryption and infinitely long password generator make your passwords nearly impossible to break. Its Console Based User Interface will help to enhance your experience.
 </pr>
 <br>
 <br>

@@ -109,12 +109,11 @@ Download installer 👇<br>
 <code>exit</code>close all files and exit console application<br>
 
 <h2>Developers</h2>
-<h3><a href="https://github.com/Akshay-Vs" target="blank"><img src="https://avatars.githubusercontent.com/u/85959609?v=4" height="3.5%" width="3.5%"></a>Akshay-Vs
-<h3><a href="https://github.com/Jim-Huo" target="blank"><img src="https://user-images.githubusercontent.com/85959609/139644303-16485461-5331-4989-9803-f72a6935565e.png" height="3.5%" width="3.5%"></a>Jim-Huo</h3>
+<h3><a href="https://github.com/Akshay-Vs" target="blank"><img src="https://avatars.githubusercontent.com/u/85959609?v=4" height="3.5%" width="3.5%"></a>Akshay-Vs</h3>
 <br>
 
 <h2 align='left'><u><b>License and Copyright</b></u></h2>
-Lisence: MIT Lisence<br>
+License: MIT Lisence<br>
 &#169; 2021 Akshay-Vs
 
  
